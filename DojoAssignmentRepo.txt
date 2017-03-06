@@ -1,0 +1,8 @@
+Created DojoAssignments repository on GitHub
+Initiallized repository locally in DojoAssignments folder.
+Added and commited local files to Git.
+Initial push to Git remote.
+Created readme.md file and outlined contents
+Added, committed, and pushed changes.
+Created DojoAssignmentReport.txt file
+Added, committed, and pushed changes.
