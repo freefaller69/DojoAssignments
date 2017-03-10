@@ -1,0 +1,43 @@
+body {
+  background-color: #d4d1af;
+  padding: 20px
+}
+#wrapper {
+  width: 1200px;
+}
+#header {
+  margin: 0 auto;
+  width: 60%;
+  height: 80px;
+}
+#header img {
+  height: 80px;
+}
+h1 {
+  display: inline-block;
+  margin: 0 auto;
+}
+#main_content {
+  padding: 20px;
+  width: 100%;
+}
+#main_content img {
+  border: 2px solid black;
+  padding: 15px;
+  margin: 5px 0;
+  height: 150px;
+  width: 150px;
+}
+.column {
+  display: inline-block;
+  width: 150px;
+  vertical-align: top;
+  margin: 0 10px;
+  padding: 10px;
+}
+.odd img{
+  background-color: #7eb2eb;
+}
+.even img{
+  background-color: #f6686f;
+}
