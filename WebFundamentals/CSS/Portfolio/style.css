@@ -1,0 +1,158 @@
+html {
+    background-color: #fff;
+}
+
+body {
+    font-family: Helvetica, Verdana, sans-serif;
+    font-size: .9em;
+
+    width: 900px;
+    margin: 0 auto;
+
+    color: #301f25;
+    background-color: #f2f2f2;
+}
+
+h1 {
+    font-family: 'Comic Sans MS', 'Comic Sans', sans-serif;
+
+    display: inline-block;
+
+    margin: 0 15px 0 15px;
+}
+
+h2 {
+  display: inline-block;
+  float: right;
+  margin: 7px 30px -7px 0;
+}
+
+header {
+    padding: 5px;
+}
+
+h3, h4 {
+    margin-top: 0;
+    margin-bottom: 0;
+    padding: 10px;
+
+    color: #fff;
+    background: linear-gradient(to bottom, #b7bebe 0%,#ababb0 26%,#878593 49%,#ababb0 70%,#b7bebe 100%);
+}
+
+a {
+    color: #301f25;
+}
+
+img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+#mainphoto img {
+    position: absolute;
+
+    width: 380px;
+    margin-right: 25px;
+
+    border: 4px solid #c0c0c0;
+}
+
+#content {
+    width: 100%;
+
+    background-color: #301f25;
+}
+#intro {
+    height: 255px;
+    padding: 25px;
+}
+
+div#about {
+    display: inline-block;
+    float: right;
+
+    width: 435px;
+    height: 257px;
+
+    background-color: #ddd0dc;
+}
+
+#mywork {
+    height: 540px;
+    padding: 25px;
+    margin-top: -20px;
+}
+
+#mywork p {
+    padding: 0 10px;
+
+    text-align: justify;
+    font-size: 0.9em;
+}
+
+.aboutme {
+    padding: 10px;
+    margin-top: -10px;
+}
+
+.column {
+    float: left;
+
+    width: 266px;
+    height: 100%;
+
+    background-color: #ddd0dc;
+}
+
+.middle {
+    margin: 0 25px;
+}
+
+.badges {
+    width: 100%;
+    margin: 3px;
+    padding: 10px;
+}
+
+div.badges {
+    width: 95%;
+    margin: 0;
+}
+
+.badges img {
+    width: 15%;
+    margin: 4px;
+}
+
+.sites {
+    height: 350px;
+}
+
+.button {
+    font-size: .9em;
+
+    position: relative;
+    left: 35%;
+
+    padding: 3px;
+
+    text-decoration: none;
+
+    color: #fff;
+    border: 1px solid black;
+    border-radius: 5px;
+    background-color: #407d61;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,.2), 0 6px 10px 0 rgba(0,0,0,.19);
+}
+
+footer {
+    text-align: center;
+}
+
+footer img {
+    width: 2%;
+    margin: 5px;
+
+    vertical-align: middle;
+}
