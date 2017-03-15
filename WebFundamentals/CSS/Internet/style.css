@@ -1,0 +1,107 @@
+html {
+    background: #3C4C5B;
+}
+
+body {
+    font-family: Helvetica, Arial, sans-serif;
+
+    width: 970px;
+    margin: 0 auto;
+
+    background-color: #fff;
+}
+
+h1 {
+  font-size: 2.75em;
+  display: inline-block;
+  position: relative;
+  font-weight: 500;
+}
+
+h1>span, section>p>span {
+  color: #23679C;
+}
+
+h2 {
+  font-size: 1.8em;
+  color: #fff;
+  padding: 10px 0 10px 15px;
+  background: #5082aa; /* Old Browsers */
+  background: -webkit-linear-gradient(top,#1e649b,#5082aa,#1e649b); /*Safari 5.1-6*/
+  background: -o-linear-gradient(top,#1e649b,#5082aa,#1e649b); /*Opera 11.1-12*/
+  background: -moz-linear-gradient(top,#1e649b,#5082aa,#1e649b); /*Fx 3.6-15*/
+  background: linear-gradient(to bottom,#1e649b, #5082aa, #1e649b); /*Standard*/
+}
+
+h3, h5 {
+  font-weight: bold;
+}
+
+h5>span {
+  color: red;
+}
+
+section>p:first-of-type {
+  font-weight: bold;
+  font-size: 0.8em;
+}
+
+p {
+
+}
+
+li {
+
+}
+
+a {
+
+}
+
+h3 {
+    font-size: 1em;
+    font-weight: bold;
+
+    margin-top: -10px;
+}
+
+body>section {
+  width: 234px;
+  margin: 10px 2px;
+  padding: 2px;
+  display: inline-block;
+  vertical-align: top;
+}
+
+section>p:last-of-type {
+  display: inline-block;
+  position: relative;
+  color: #fff;
+  text-align: center;
+  font-size: 1.3em;
+  padding: 30px;
+  margin-left: -25px;
+}
+
+#content {
+  width: 700px;
+  display: inline-block;
+}
+
+body>img {
+  position: relative;
+  top: 25px;
+  width: 9%;
+}
+
+section>img:nth-of-type(odd) {
+  width: 200px;
+  /*background-image: url(images/ad_background.png);*/
+  position: absolute;
+}
+
+section>img:nth-of-type(even) {
+  width: 80px;
+  /*background-image: url(images/ad_background.png);*/
+  position: relative;
+}
