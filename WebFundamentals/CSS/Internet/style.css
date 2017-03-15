@@ -1,5 +1,5 @@
 html {
-    background: #3C4C5B;
+    background: #fff;
 }
 
 body {
@@ -8,7 +8,7 @@ body {
     width: 970px;
     margin: 0 auto;
 
-    background-color: #fff;
+    background: #fff;
 }
 
 h1 {
@@ -41,46 +41,11 @@ h5>span {
   color: red;
 }
 
-section>p:first-of-type {
-  font-weight: bold;
-  font-size: 0.8em;
-}
-
-p {
-
-}
-
-li {
-
-}
-
-a {
-
-}
-
 h3 {
     font-size: 1em;
     font-weight: bold;
 
     margin-top: -10px;
-}
-
-body>section {
-  width: 234px;
-  margin: 10px 2px;
-  padding: 2px;
-  display: inline-block;
-  vertical-align: top;
-}
-
-section>p:last-of-type {
-  display: inline-block;
-  position: relative;
-  color: #fff;
-  text-align: center;
-  font-size: 1.3em;
-  padding: 30px;
-  margin-left: -25px;
 }
 
 #content {
@@ -92,16 +57,91 @@ body>img {
   position: relative;
   top: 25px;
   width: 9%;
+  height: auto;
+}
+body>section {
+  width: 195px;
+  display: inline-block;
+  vertical-align: top;
+  position: relative;
+  left: 10px;
+  top: 20px;
+}
+
+section>p:first-of-type {
+  font-weight: bold;
+  font-size: 0.8em;
+  margin: 10px 0 15px 0;
+  position: relative;
+}
+
+section>p:last-of-type {
+  display: inline-block;
+  position: relative;
+  left: -5px;
+  color: #fff;
+  text-align: center;
+  font-size: 1.4em;
+  padding: 15px;
 }
 
 section>img:nth-of-type(odd) {
   width: 200px;
-  /*background-image: url(images/ad_background.png);*/
+  height: auto;
   position: absolute;
+  margin-left: -5px;
+}
+
+section hr {
+  border: 1px solid #a6a6a0;
+  position: relative;
+  margin: 15px;
 }
 
 section>img:nth-of-type(even) {
   width: 80px;
-  /*background-image: url(images/ad_background.png);*/
+  height: auto;
   position: relative;
+  left: 50px;
+  top: -10px;
+}
+
+section a {
+  width: 150px;;
+  padding: 10px 20px;
+  display: block;
+  justify-content: center;
+  margin: 4px auto;
+  font-size: 0.95em;
+  text-align: center;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  box-shadow: 1px 1px 1px grey;
+}
+
+section>a:nth-of-type(1) {
+  background: #5d95bf; /* Old Browsers */
+  background: -webkit-linear-gradient(top,#5d95bf,#25699e); /*Safari 5.1-6*/
+  background: -o-linear-gradient(top,#5d95bf,#25699e); /*Opera 11.1-12*/
+  background: -moz-linear-gradient(top,#5d95bf,#25699e); /*Fx 3.6-15*/
+  background: linear-gradient(to bottom, #5d95bf, #25699e); /*Standard*/
+}
+
+section>a:nth-of-type(even) {
+  background: #eca856; /* Old Browsers */
+  background: -webkit-linear-gradient(top,#eca856,#f27600); /*Safari 5.1-6*/
+  background: -o-linear-gradient(top,#eca856,#f27600); /*Opera 11.1-12*/
+  background: -moz-linear-gradient(top,#eca856,#f27600); /*Fx 3.6-15*/
+  background: linear-gradient(to bottom, #eca856, #f27600); /*Standard*/
+}
+
+section>a:nth-of-type(3) {
+  position: relative;
+  padding: 5px 10px;
+  background: #5d95bf; /* Old Browsers */
+  background: -webkit-linear-gradient(top,#68cede,#00c0dd); /*Safari 5.1-6*/
+  background: -o-linear-gradient(top,#68cede,#00c0dd); /*Opera 11.1-12*/
+  background: -moz-linear-gradient(top,#68cede,#00c0dd); /*Fx 3.6-15*/
+  background: linear-gradient(to bottom, #68cede, #00c0dd); /*Standard*/
 }
