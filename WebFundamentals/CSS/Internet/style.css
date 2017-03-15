@@ -264,7 +264,7 @@ article span {
   color: #00c0dd;
 }
 
-.blackBold {
+article p span:not(:first-of-type) {
   font-weight: bold;
 
   color: #000;
