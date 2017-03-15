@@ -137,6 +137,10 @@ color: #fff;
 border-radius: 5px;
 }
 
+a span {
+  font-size: 12px;
+}
+
 #sidebar hr {
 position: relative;
 
