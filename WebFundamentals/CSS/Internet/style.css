@@ -3,6 +3,7 @@ html {
 }
 
 body {
+  position: relative;
   font-family: Helvetica, Arial, sans-serif;
 
   width: 970px;
@@ -13,10 +14,10 @@ body {
 
 #content {
   background: #fff; /* Old Browsers */
-  background: -webkit-linear-gradient(top,#e4e4e4,#fff); /*Safari 5.1-6*/
-  background:      -o-linear-gradient(top,#e4e4e4,#fff); /*Opera 11.1-12*/
-  background:    -moz-linear-gradient(top,#e4e4e4,#fff); /*Fx 3.6-15*/
-  background:         linear-gradient(to bottom, #e4e4e4, #fff); /*Standard*/
+  background: -webkit-linear-gradient(top,#e4e4e4,#fff,#fff,#fff); /*Safari 5.1-6*/
+  background:      -o-linear-gradient(top,#e4e4e4,#fff,#fff,#fff); /*Opera 11.1-12*/
+  background:    -moz-linear-gradient(top,#e4e4e4,#fff,#fff,#fff); /*Fx 3.6-15*/
+  background:         linear-gradient(to bottom, #e4e4e4,#fff,#fff,#fff); /*Standard*/
 }
 
 body > img:first-of-type {
