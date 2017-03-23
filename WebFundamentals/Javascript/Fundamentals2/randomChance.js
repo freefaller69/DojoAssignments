@@ -2,7 +2,7 @@ function randomChance(quarters, cutoff) {
   for (var q = quarters; q > cutoff; q--) {
     var r = (Math.floor(Math.random()*100)+1);
     if (r > 99) {
-      var winnings = (Math.floor(Math.random() * 10) + 51);
+      var winnings = (Math.floor(Math.random() * 100 -50 +1) + 50);
       console.log("Your number was " + r + "!  You have won " + winnings + " quarters!");
       q+=winnings;
       console.log("You now have " + q + " quarters!");

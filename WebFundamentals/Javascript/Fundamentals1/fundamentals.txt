@@ -1,0 +1,47 @@
+What is source code?
+Source code is the human readable instruction set for a computer to read, interpret, and execute the tasks set forth in the code.
+
+What makes computers so “smart”, anyway?
+Computers "smarts" derive in part from their ability to process electronic tasks far more quickly than the human brain, but they are dependent upon the smarts passed to them via the code presented to them by humans.  They are extremely literal and will follow instructions exactly as they are written.
+
+What is the purpose of a programming language?
+Programming languages are for humans to be able to write instructions in a syntax that a computer can read, understand, and execute.
+
+
+What are 3 examples of programming languages? Why are there so many of these?  Three programming languages that come immediately to mind are Java, Python, and Ruby.  Different languages have different strengths depending upon application.  For example, Ruby on Rails allows for swift development and rollout of a website by taking minimal code and maximizing the output of the tasks set forth to it.  In the case of the three core languages of a web page they are strongest in their inherent purpose, HTML defines the semantic structure, CSS determines the layout and appearance, and JavaScript provides functionality.
+
+What is a variable? Why are variables useful?
+A variable is a placeholder or representation of some form of data value.  Can be updated or changed, unlike constants which are set and immutable.
+
+What is the difference between a single-equals (=) and a double-equals (==)?
+Single-equals represent assignment of a value to a variable.  Double-equals are to evaluate whether two values are equal.
+
+What is the difference between a double-equals (==) and a triple-equals (===)?
+Double-equals will evaluate abstract equality regardless of the data type (string, number, boolean, etc), while triple-equals evaluate strict equality between values.  For example, 4 == '4' will evaluate as true, while 4 === '4' will evaluate as false.
+
+Why does the developer console exist?
+The developer console allows the programmer to view what code is doing behind the scenes and determine where errors may be occurring.  It also allows a developer to test code changes to a web page in real time.
+
+When we talk about “conditional” statements, what does that mean? What is an example?
+Conditional statements evaluate data to determine how or even whether code should be executed.  The if/then statement is very common and will evaluate whether a condition required to execute the code beyond it is met.  If the condition is not met, the code is passed by as though it wasn't even there.
+
+Why would we want FOR or WHILE loops in our source code?
+When we know we want a piece of code to execute multiple times, FOR or WHILE loops allow us to write a piece of code once and execute that code a predetermined or calculated number of times rather than rewriting the code for each iteration desired.
+
+When would you use a WHILE loop, instead of a FOR loop?
+A WHILE loop would be well suited to when you want to repeat a section of code but do not know how many times it needs to execute.
+
+What is a function? Why would we use functions?
+A function allows a programmer to define a specific task which may be called upon when and as many times as needed.
+
+How many values can you receive back from a function? How many values can you send in?
+Functions and return and receive multiple values.
+
+What is an array? How many values does it hold?
+An array is an indexed set of values.  It can hold multiple types of data and many values.
+
+What is a T-diagram and why should I know how to use one?
+It is a method for tracking the state of local variables while stepping through lines of code.
+
+What are the two ways to comment JS code? When would you use one versus the other?
+JS code can be commented in the two following ways, // will comment out a single line hiding all text to the right of it while /* */ is used to encapsulate multiple lines of text, hiding it from the computer.
