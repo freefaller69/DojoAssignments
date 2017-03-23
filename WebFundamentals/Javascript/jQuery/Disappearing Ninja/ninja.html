@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Disappearing Ninja</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="normalize.css">
+  <link rel="stylesheet" href="reset.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Disappearing Ninja</h1>
+  <ul>
+    <li><img src="Donatelo99.png" alt="Donatello"></li>
+    <li><img src="Donatelo99.png" alt="Donatello"></li>
+    <li><img src="Donatelo99.png" alt="Donatello"></li>
+    <li><img src="Donatelo99.png" alt="Donatello"></li>
+    <li><img src="Donatelo99.png" alt="Donatello"></li>
+    <li><img src="Donatelo99.png" alt="Donatello"></li>
+    <li><img src="Donatelo99.png" alt="Donatello"></li>
+    <li><img src="Donatelo99.png" alt="Donatello"></li>
+  </ul>
+
+  <button id="restore">Restore All</button>
+
+  <script>
+  $('document').ready(function(){
+    console.log("DOM and Donatello are loaded");
+    $('img').click(function(){
+      $(this).hide();
+    });
+    $('button').click(function(){
+      $('img').show();
+    });
+  });
+
+
+  </script>
+
+</body>
+</html>
