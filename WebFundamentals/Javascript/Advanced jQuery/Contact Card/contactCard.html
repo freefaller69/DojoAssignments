@@ -11,6 +11,7 @@
 <body>
 
   <div id="container">
+    <div id="left">
     <form action="index.html" method="post">
       <label for="first">First Name:</label>
       <input type="text" id="first" placeholder="First Name">
@@ -20,11 +21,9 @@
       <textarea id="description" placeholder="Describe yourself"></textarea>
       <input type="submit" value="Add User">
     </form>
+    </div>
     <div id="card-box">
-      <div class="contact-card">
-        <h3></h3>
-        <p></p>
-      </div>
+
     </div>
   </div>
 
@@ -35,14 +34,20 @@
 
     $('form').submit(function(e) {
       e.preventDefault();
-      var first = $('input[name=first]').val();
-      $('input').val('');
-      var last = $('input[name=last]').val();
-      $('input').val('');
+      var first = $('input[id=first]').val();
+      var last = $('input[id=last]').val();
       var desc = $('textarea').val();
+      var flip = "<p class='front'>Click for description!</p>";
+      var newCard = "<div id='card'><h3 class='front'>" + first + " " + last + flip + "</h3><p class='back'>" + desc + "</p></div>";
+      $('input[type=text]').val('');
       $('textarea').val('');
-      var newCard;
-    }
+      $('#card-box').prepend(newCard);
+    });
+
+    $('#card-box').on('click', '#card', function() {
+      $(this).children('.front').toggle();
+      $(this).children('.back').toggle();
+    });
 
   });
   </script>
