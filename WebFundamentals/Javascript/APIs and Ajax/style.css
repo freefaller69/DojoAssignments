@@ -1,0 +1,48 @@
+body {
+  font-family: Verdana, Helvetica, Arial, sans-serif;
+  font-size: 12px;
+}
+
+section {
+  display: inline-block;
+  width: 80%;
+  vertical-align: top;
+}
+
+#dex {
+  display: inline-block;
+  width: 200px;
+  height: 400px;
+  padding: 10px;
+  border: 50px solid red;
+  border-left: 25px solid red;
+  border-right: 25px solid red;
+}
+
+h3, h4 {
+  font-weight: bold;
+  margin-top: 20px;
+  margin-bottom: 5px;
+  text-transform: capitalize;
+}
+
+h3 {
+  text-align: center;
+  font-size: 24px;
+}
+
+h4 {
+  font-size: 14px;
+}
+
+img {
+  margin-left: 30px;
+}
+
+ul {
+  padding: 10px;
+}
+
+li {
+  margin: 0 0 5px 20px;
+}

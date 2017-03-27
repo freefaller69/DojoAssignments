@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>HTTP Request Response</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="reset.css">
+  </head>
+  <body>
+<script>
+  $(document).ready(function(){
+    console.log("Ready to roll!");
+
+    var linkStart = '<img src="http://pokeapi.co/media/img/'
+var linkEnd = '.png" alt="">'
+
+    for (i = 1; i <= 151; i++){
+      $('body').append(linkStart + i + linkEnd)
+    }
+
+  });
+</script>
+  </body>
+</html>
