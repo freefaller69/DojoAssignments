@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Weather Forecast App</title>
+  <link rel="stylesheet" href="normalize.css">
+  <link rel="stylesheet" href="reset.css">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+</head>
+<body>
+
+  <div id="container">
+    <div id="left">
+    <form action="index.html" method="post">
+      <label for="location">First Name:</label>
+      <input type="text" id="location" placeholder="City Name">
+      <input type="submit" class="button" value="Search Weather">
+    </form>
+    </div>
+    <div id="weather">
+
+    </div>
+  </div>
+
+
+  <script>
+  $('document').ready(function(){
+    console.log("DOM is loaded");
+
+    $('form').submit(function(e) {
+      e.preventDefault();
+      //get city from form
+      var location = $('input[id=location]').val();
+
+      //build url to retrieve data
+      var locString = "";
+      locString += "http://api.openweathermap.org/data/2.5/weather?q=";
+      locString += location;
+      locString += "&units=imperial&appid=";
+      locString += "f49f6f436bfaedc90abf3a40f7c13025";
+
+      //Pass city to openweather
+      $.get(locString, function(result){
+        console.log(result);
+        var temp = result.main.temp;
+        console.log(temp);
+
+      //Return temp info to browser
+      var curTemp = "";
+      curTemp += "<h3>" + location + "</h3>";
+      curTemp += "<p>Temperature: " + temp + " F</p>";
+
+      $('input[id=location]').val('');
+      $('#weather').html(curTemp);
+    }, "json");
+    });
+
+  });
+  </script>
+
+</body>
+</html>
