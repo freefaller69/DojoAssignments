@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Game of Thrones</title>
+  <link href="https://fonts.googleapis.com/css?family=Macondo" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=MedievalSharp" rel="stylesheet">
+  <link rel="stylesheet" href="normalize.css">
+  <link rel="stylesheet" href="reset.css">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+</head>
+<body>
+
+  <div id="container">
+    <div id="houses">
+      <img src="images/stark.jpg" id="362" alt="House Stark">
+      <img src="images/targaryen.jpg" id="378" alt="House Targaryen">
+      <img src="images/lannister.jpg" id="229" alt="House Lannister">
+      <img src="images/baratheon.png" id="16" alt="House Baratheon">
+    </div>
+    <div id="houseInfo">
+      <!-- House name, words, and titles appear here -->
+    </div>
+  </div>
+
+
+  <script>
+  $('document').ready(function(){
+    console.log("DOM is loaded");
+
+    //Click on img to get house id
+    $('img').on('click', function() {
+      var houseID = $(this).attr('id');
+      console.log(houseID);
+
+      //url to retrieve data
+      var got = "http://www.anapioficeandfire.com/api/houses/" + houseID;
+
+      //Pass house id to GoT api
+      $.get(got, function(result){
+        console.log(result);
+
+      // //Build html to apply to #houseInfo
+      var houseNameList = ""
+      houseNameList += "<h2>House Details</h2>";
+      houseNameList += "<h3><span>Name:</span> " + result.name + " </h3>";
+      if(result.words !== ""){
+      houseNameList += "<p><span>Words:</span> " + result.words + " </p>";
+      }
+      houseNameList += "<p><span>Titles:</span> " + result.titles + " </p>";
+      // console.log(houseinfo);
+      console.log(houseNameList);
+
+      $('#houseInfo').html(houseNameList);
+    }, "json");
+  });
+
+  });
+  </script>
+
+</body>
+</html>
