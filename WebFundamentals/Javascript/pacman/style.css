@@ -18,7 +18,10 @@ div.row div {
 div.brick {
   background-color: blue;
 }
-
+/*div.brick+div.coin+div.brick {
+  border-radius: 0;
+}
+*/
 div.coin {
   background: url('images/coin.png');
   background-size: 10px 10px;
@@ -37,20 +40,34 @@ div.cherry {
   height: 30px;
 }
 
-div#pacman {
+div.ghost {
+  background: url('images/blinky.png');
+  background-size: 20px 20px;
+  background-repeat: no-repeat;
+  background-position: center;
+  border-image-width: 0;
+  width: 30px;
+  height: 30px;
+}
+
+#pacman {
   width: 35px;
   height: 35px;
   position: absolute;
 }
 
-div.empty {
-
-}
-
-#direction {
-  /*transform: rotate(90deg);*/
+#pacman>img {
   width: 30px;
   height: 30px;
+}
+
+#blinky>img {
+  width: 30px;
+  height: 30px;
+}
+
+div.empty {
+
 }
 
 div#score {

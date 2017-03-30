@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Game of Thrones</title>
+    <script type="text/javascript" src='http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
+    <script type="text/javascript">
+      $(document).ready(function () {
+        $('img').click(function () {
+          var url = "http://www.anapioficeandfire.com/api/houses/" + $(this).attr('alt');
+          console.log(url);
+          $.get(url, function (res) {
+            console.log(res);
+            var name = res.name;
+            var words = res.words;
+            var titles = ""
+            for (var i = 0; i < res.titles.length; i++) {
+              if (titles.length > 1){
+                if (i == res.titles.length-1){
+                  titles += res.titles[i];
+                } else if (i <= titles.length-2) {
+                  titles += res.titles[i] + ", ";
+                }
+              } else if (titles.length = 1) {
+                titles += res.titles[i];
+              }
+            }
+            $('#house-card').css('border', '2px solid black');
+            $('#house-card').html('<h2>Name: ' + name + '</h2><h2>Words: ' + words + '</h2><h2>Titles: ' + titles + '</h2>');
+          }, 'json');
+          });
+        });
+    </script>
+    <style media="screen">
+      #houses img{
+        width: 200px;
+        height: 150px;
+      }
+      #house-card{
+        width: 500px;
+        height: 300px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="houses">
+      <img src="images/baratheon.png" alt="16">
+      <img src="images/lannister.jpg" alt="229">
+      <img src="images/stark.jpg" alt="362">
+      <img src="images/targaryen.jpg" alt="378">
+    </div>
+    <div id="house-card">
+    </div>
+  </body>
+</html>
