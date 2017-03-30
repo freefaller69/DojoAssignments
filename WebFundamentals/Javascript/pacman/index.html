@@ -14,7 +14,7 @@
 
   <div id="world"></div>
   <div id="pacman"><img src="images/pacman.gif" alt=""></div>
-  <div id="blinky" ><img src="images/blinky.png" alt=""></div>
+  <div id="ghost" class="blinky" ><img src="images/blinky.png" alt=""></div>
   <div id="score"></div>
 
   Features to build
@@ -33,7 +33,7 @@
     [2,2,2,2,2,1,2,2,2,2,1,2,1,2,2,2,2,1,2,2,2,2,2],
     [0,0,0,0,2,1,2,0,0,0,0,0,0,0,0,0,2,1,2,0,0,0,0],
     [2,2,2,2,2,1,2,0,2,2,2,2,2,2,2,0,2,1,2,2,2,2,2],
-    [0,0,0,0,0,1,2,0,2,0,0,4,0,0,2,0,2,1,0,0,0,0,0],
+    [0,0,0,0,0,1,2,0,2,0,0,0,0,0,2,0,2,1,0,0,0,0,0],
     [2,2,2,2,2,1,2,0,2,2,2,2,2,2,2,0,2,1,2,2,2,2,2],
     [0,0,0,0,2,1,2,0,0,0,0,3,0,0,0,0,2,1,2,0,0,0,0],
     [2,2,2,2,2,1,2,0,2,2,2,2,2,2,2,0,2,1,2,2,2,2,2],
@@ -78,8 +78,8 @@
           output += "<div class='empty'></div>";
         } else if(world[i][j] === 3){
           output += "<div class='cherry'></div>";
-        } else if(world[i][j] === 4){
-          output += "<div class='ghost'></div>";
+        // } else if(world[i][j] === 4){
+        //   output += "<div class='ghost'></div>";
         }
     }
     output += "\n</div>";
@@ -105,6 +105,7 @@ function displayScore() {
 displayWorld();
 displayPacman();
 displayScore();
+displayGhost();
 setInterval(function() {
 
 }, 750)
