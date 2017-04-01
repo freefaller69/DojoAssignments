@@ -40,7 +40,7 @@ div.cherry {
   height: 30px;
 }
 
-div#blinky {
+div.blinky {
   background: url('images/blinky.png');
   background-size: 20px 20px;
   background-repeat: no-repeat;

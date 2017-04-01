@@ -1,0 +1,65 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+	margin: 0;
+}
+
+body {
+  font-size: 1em; /* currently ems cause chrome bug misinterpreting rems on body element */
+  font-weight: 400;
+  font-family: "Raleway", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: #222;
+}
+
+h1, h2 {
+  padding: 20px;
+}
+
+.row {
+  padding: 20px;
+  clear: both;
+}
+
+.content {
+  padding: 20px;
+  line-height: 1.6;
+}
+
+/*Small sized screens*/
+@media only screen and (max-width: 480px) {
+  .twelve-s { width: 100%; }
+}
+/*Medium sized screens*/
+@media only screen and (min-width: 481px) {
+  .four-m { width: 33.333333%; }
+  .five-m { width: 41.666666%; }
+  .seven-m { width: 58.333333%; }
+  .eight-m { width: 66.666666%; }
+}
+/*Large sized screens*/
+@media only screen and (min-width: 1024px) {
+  .four-l { width: 33.333333%; }
+  .eight-l { width: 66.666666%; }
+}
+
+.column {
+  float: left;
+  padding-right: 20px;
+}
+
+#wrapper {
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+header, li {
+  background-color: #ddd;
+}
+
+li {
+  list-style-type: none;
+  display: inline;
+  padding: 10px;
+  margin: 10px;
+}
