@@ -1,0 +1,10 @@
+pip install Django (We know you already ran this one. What information do you see returned in terminal after this command?)
+    Requirement already satisfied: Django in c:\python27\lib\site-packages
+
+pip freeze (What's the difference between freeze and list?)
+    It shows the script names with an == and the version number as one string without spaces while list shows the script name with the version number in parenthesis.
+
+First cd into your Desktop directory (cd ~/Desktop), then run this command: pip freeze > requirements.txt. What do you see when you ls? What's inside this file?
+    It placed a requirements.txt file on my desktop with a list of installed scripts
+
+I learned that to install Python scripts using Git Bash on Windows you have to either add to your .bashrc file or type "python -m pip install {filename}", and I learned that when uninstalling it will list all the files being uninstalled and then stop without going to a prompt.  I found on Stack Overflow that I have to hit y and enter for it to finish.

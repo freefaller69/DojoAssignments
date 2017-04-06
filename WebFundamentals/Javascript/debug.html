@@ -9,22 +9,53 @@
   <script>
     "use strict";
 
-    function rotate(arr, shiftBy) {
-      shiftBy = shiftBy % arr.length;
-      if(shiftBy < 0){
-        shiftBy = arr.length + shiftBy;
+    function parens(str){
+      var parens = 0;
+      var bracket = 0;
+      var brace = 0;
+      for (var idx = 0; idx < str.length; idx++){
+        if(str[idx] == "("){
+          parens++;
+        }
+        if(str[idx] == ")"){
+          parens--;
+        }
+        if(str[idx] == "["){
+          bracket++;
+        }
+        if(str[idx] == "]"){
+          bracket--;
+        }
+        if(str[idx] == "{"){
+          brace++;
+        }
+        if(str[idx] == "}"){
+          brace--;
+        }
+        console.log("Parens: " + parens);
+        console.log("Bracket: " + bracket);
+        console.log("Brace: " + brace);
+        if(parens < 0 || bracket < 0 || brace < 0) {
+          console.log("False");
+          return false;
+        }
       }
-      while(shiftBy){
-      var t = arr[0];
-      for (var i = 0; i < arr.length; i++){
-        arr[i] = arr[i+1];
+      if(parens === 0 && bracket === 0 && brace === 0){
+        console.log("True");
+      } else {
+        console.log("False");
       }
-      arr[arr.length-1] = t;
-      shiftBy--;
     }
-      console.log(arr);
-    }
-    rotate([1,2,3,4,5,6,7],2);
+
+    // var test1 = "W(a{t}s[o(n{ c}o)m] )h[e{r}e]!"; // true
+    // parens(test1);
+    // var test2 = "D(i{a}l[ t]o)n{3"; // false
+    // parens(test2);
+    var test3 = "A(1)s[O (n]0{t) 0}k"; // false
+    parens(test3);
+
+
+
 
 
   </script>

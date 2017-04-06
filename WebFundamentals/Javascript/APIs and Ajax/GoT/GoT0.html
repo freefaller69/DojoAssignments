@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="Coding Dojo Game of Thrones API assignment.">
+    <title>Game of Thrones</title>
+    <link rel="stylesheet" href="style.css">
+    <script type="text/javascript" src='http://code.jquery.com/jquery-1.10.2.min.js'></script>
+  </head>
+  <body>
+    <div id="container">
+      <header>
+        <h1>Game of Thrones</h1>
+        <h2>API Assignment by Katie Charles-McGrath</h2>
+      </header>
+      <main>
+        <section>
+          <h3>Houses</h3>
+          <div id="houses">
+            <div class="house-wrap"><img id="362" src="images/stark.jpg" alt="House Stark"></div>
+            <div class="house-wrap"><img id="17" src="images/baratheon.png" alt="House Baratheon"></div>
+            <div class="house-wrap"><img id="229" src="images/lannister.jpg" alt="House Lannister"></div>
+            <div class="house-wrap"><img id="378" src="images/targaryen.jpg" alt="House Targaryen"></div>
+          </div>
+        </section>
+        <section id = "house-info">
+        </section>
+      </main>
+    </div>
+    <script type="text/javascript">
+    $(document).ready(function() {
+      $('#houses').on('click', 'img', function(){
+        // build URL for the selected house
+        var houseID = $(this).attr('id');
+        console.log(houseID);
+        var houseURL = 'http://www.anapioficeandfire.com/api/houses/' + houseID;
+        // get house information
+        $.get(houseURL, function(res) {
+          // contruct html string
+          var htmlStr = '<h3>House Details</h3>';
+          htmlStr += '<p>Name: ' + res.name + '</p>';
+          htmlStr += '<p>Words: ' + res.words + '</p><p>Titles: ';
+          for(var i = 0; i < res.titles.length-1; i++) {
+            htmlStr += res.titles[i] + ', ';
+          };
+          htmlStr += res.titles[res.titles.length-1] + '</p>';
+          // append html string
+          $('#house-info').html(htmlStr);
+        }, 'json');
+      });
+    });
+
+    </script>
+  </body>
+</html>
