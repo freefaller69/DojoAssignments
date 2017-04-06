@@ -9,50 +9,54 @@
   <script>
     "use strict";
 
-    function parens(str){
-      var parens = 0;
-      var bracket = 0;
-      var brace = 0;
+    function braces(str){
+      var arr = [];
       for (var idx = 0; idx < str.length; idx++){
-        if(str[idx] == "("){
-          parens++;
+        if(str[idx] === "(" || str[idx] === "[" || str[idx] === "{"){
+          arr.push(str[idx]);
+        } else if(str[idx] === ")" || str[idx] === "]" || str[idx] === "}"){
+          if((str[idx] === ")" && arr[arr.length - 1] === "("){
+            arr.pop();
+          } else if((str[idx] === "]" && arr[arr.length - 1] === "["){
+            arr.pop();
+          } || if((str[idx] === "}" && arr[arr.length - 1] === "{"){
+            arr.pop();
+          } else {
+            console.log("False")
+            return false;
+          }
         }
-        if(str[idx] == ")"){
-          parens--;
-        }
-        if(str[idx] == "["){
-          bracket++;
-        }
-        if(str[idx] == "]"){
-          bracket--;
-        }
-        if(str[idx] == "{"){
-          brace++;
-        }
-        if(str[idx] == "}"){
-          brace--;
-        }
-        console.log("Parens: " + parens);
-        console.log("Bracket: " + bracket);
-        console.log("Brace: " + brace);
-        if(parens < 0 || bracket < 0 || brace < 0) {
-          console.log("False");
-          return false;
-        }
+        // } else if (str[idx] === ")" && arr[arr.length - 1] !== "("){
+        //   console.log("Invalid closing parenthesis.");
+        // }
+        //   arr.pop();
+        // } else if (str[idx] === "]" && arr[arr.length - 1] !== "["){
+        //   console.log("Invalid closing bracket.");
+        // }
+        //   arr.pop();
+        // } else if (str[idx] === "}" && arr[arr.length - 1] !== "{"){
+        //   console.log("Invalid closing brace.");
+        // }
       }
-      if(parens === 0 && bracket === 0 && brace === 0){
+      if(arr.length === 0){
         console.log("True");
       } else {
         console.log("False");
       }
     }
 
-    // var test1 = "W(a{t}s[o(n{ c}o)m] )h[e{r}e]!"; // true
-    // parens(test1);
-    // var test2 = "D(i{a}l[ t]o)n{3"; // false
-    // parens(test2);
+    var test1 = "W(a{t}s[o(n{ c}o)m] )h[e{r}e]!"; // true
+    braces(test1);
+    var test2 = "D(i{a}l[ t]o)n{3"; // false
+    braces(test2);
     var test3 = "A(1)s[O (n]0{t) 0}k"; // false
-    parens(test3);
+    braces(test3);
+
+
+
+
+
+
 
 
 
