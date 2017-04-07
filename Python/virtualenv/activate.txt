@@ -1,4 +1,0 @@
-source Py27Flaskenv/Scripts/activate
-
-
-open from virtualenv folder
