@@ -7,9 +7,9 @@
   <title>Hello Kitty!</title>
 </head>
 <body>
-  <h2>{{name}} Guess What, I'm Using Flask!</h2>
+  <h2>My name is {{ name }}. Guess What, I'm Using Flask!</h2>
   {% for number in range(age) %}
-  <a href="/numbers">{{number}} | </button>
+  <a href="/numbers">{ {number }} | </button>
   {% endfor %}
 </body>
 </html>

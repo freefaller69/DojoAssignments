@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>First Template</title>
+</head>
+<body>
+  <h3>My first flask template with embedded python</h3>
+  <!-- this will output the value of our phrase variable -->
+  <p>Phrase: {{ phrase }}</p>
+  <!-- this will output the value of our times variable -->
+  <p>Times: {{ times }}</p>
+  <!-- here is an example of embedding a for-loop in our code -->
+  {% for x in range(0,times): %}
+  <p>{{ phrase }}</p>
+  {% endfor %}
+</body>
+</html>

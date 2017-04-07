@@ -14,29 +14,22 @@
       for (var idx = 0; idx < str.length; idx++){
         if(str[idx] === "(" || str[idx] === "[" || str[idx] === "{"){
           arr.push(str[idx]);
+          console.log(arr);
         } else if(str[idx] === ")" || str[idx] === "]" || str[idx] === "}"){
-          if((str[idx] === ")" && arr[arr.length - 1] === "("){
-            arr.pop();
-          } else if((str[idx] === "]" && arr[arr.length - 1] === "["){
-            arr.pop();
-          } || if((str[idx] === "}" && arr[arr.length - 1] === "{"){
-            arr.pop();
-          } else {
-            console.log("False")
-            return false;
-          }
+            if(str[idx] === ")" && arr[arr.length - 1] === "("){
+              arr.pop();
+              console.log(arr);
+            } else if(str[idx] === "]" && arr[arr.length - 1] === "["){
+              arr.pop();
+              console.log(arr);
+            } else if(str[idx] === "}" && arr[arr.length - 1] === "{"){
+              arr.pop();
+              console.log(arr);
+            } else {
+              console.log("False")
+              return false;
+            }
         }
-        // } else if (str[idx] === ")" && arr[arr.length - 1] !== "("){
-        //   console.log("Invalid closing parenthesis.");
-        // }
-        //   arr.pop();
-        // } else if (str[idx] === "]" && arr[arr.length - 1] !== "["){
-        //   console.log("Invalid closing bracket.");
-        // }
-        //   arr.pop();
-        // } else if (str[idx] === "}" && arr[arr.length - 1] !== "{"){
-        //   console.log("Invalid closing brace.");
-        // }
       }
       if(arr.length === 0){
         console.log("True");
@@ -51,13 +44,6 @@
     braces(test2);
     var test3 = "A(1)s[O (n]0{t) 0}k"; // false
     braces(test3);
-
-
-
-
-
-
-
 
 
 
