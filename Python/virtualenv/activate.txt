@@ -1,1 +1,0 @@
-source Py27Flaskenv/Scripts/activate
