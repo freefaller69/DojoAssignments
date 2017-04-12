@@ -1,0 +1,59 @@
+div#wrapper {
+  width: 90%;
+  text-align: center;
+  padding: 20px;
+  margin: 0 auto;
+}
+
+p {
+  font-size: 1.5em;
+}
+
+input {
+  display: block;
+  margin: 10px auto;
+}
+
+.btn {
+  margin: 10px;
+}
+
+div#response {
+  margin: 0 auto;
+  text-align: center;
+  position: relative;
+  font-size: 1.5em;
+  font-weight: bold;
+  height: 300px;
+  width: 300px;
+  vertical-align: middle;
+  padding: 20px;
+  color: #fff;
+}
+
+div#response p {
+  font-family: cursive;
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.nope {
+  background: #d32;
+}
+
+.yep {
+  background: #0a1;
+}
+
+#reset {
+  margin: 0;
+  position: absolute;
+  top: 80%;
+  left: 50%;
+  transform: translate(-50%, -20%);
+  background: #38b;
+  z-index: 11;
+}

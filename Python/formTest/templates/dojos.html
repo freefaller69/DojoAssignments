@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+  <title>Become a ninja</title>
+</head>
+<body>
+  <h2>Become a ninja</h2>
+  <p>Fill out the form to submit your request to become a ninja</p>
+  <form action="">
+    <label for="first">First Name:</label>
+    <input type="text" id="first" placeholder="First Name">
+    <label for="last">Last Name:</label>
+    <input type="text" id="last" placeholder="Last Name">
+    <label for="description">Description:</label>
+    <textarea id="description" placeholder="Describe yourself"></textarea>
+    <input type="submit" value="Add User">
+  </form>
+</body>
+</html>
