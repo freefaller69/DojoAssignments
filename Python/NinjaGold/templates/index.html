@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  <title>Ninja Gold</title>
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/normalize.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/skeleton.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/myStyles.css') }}">
+
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="images/favicon.png">
+
+</head>
+<body>
+
+  <!-- Primary Page Layout
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <div class="container">
+    <div class="row">
+      <header class="twelve columns">
+        <p>Your Gold: <span>{{ session['gold'] }}</span></p>
+        <form action="/reset" id="newGame" method="post">
+          <input type="submit" name="reset" value="New Game">
+        </form>
+
+      </header>
+    </div>
+    <div id="places" class="row">
+      <div id="farm" class="three columns">
+        <h4>Farm</h4>
+        <p>(earns 10-20 gold)</p>
+        <form action="/process_money" method="post">
+          <input type="hidden" name="action" value="farm">
+          <input type="submit" name="farm" value="Find Gold!">
+        </form>
+      </div>
+      <div id="cave" class="three columns">
+        <h4>Cave</h4>
+        <p>(earns 5-10 gold)</p>
+        <form action="/process_money" method="post">
+          <input type="hidden" name="action" value="cave">
+          <input type="submit" name="cave" value="Find Gold!">
+        </form>
+      </div>
+      <div id="house" class="three columns">
+        <h4>House</h4>
+        <p>(earns 2-5 gold)</p>
+        <form action="/process_money" method="post">
+          <input type="hidden" name="action" value="house">
+          <input type="submit" name="house" value="Find Gold!">
+        </form>
+      </div>
+      <div id="casino" class="three columns">
+        <h4>Casino</h4>
+        <p>(earns/takes 0-50 gold)</p>
+        <form action="/process_money" method="post">
+          <input type="hidden" name="action" value="casino">
+          <input type="submit" name="casino" value="Find Gold!">
+        </form>
+      </div>
+    </div>
+    <div class="bottom row">
+      <p>Activities:</p>
+      <div id="activities" class="twelve columns">
+        <ul>
+          {% for items in session['actions']|sort(reverse=True,attribute="stamp") %}
+            {% if items['place'] == 'casino' %}
+              {% if items['goldThisRound'] < 0 %}
+                <li class="lost"> Entered a casino and lost {{ items['goldThisRound'] }} gold.  Ouch!  ({{ ('{:%Y/%m/%d %I:%M %p}'.format(items['stamp'])) }})</li>
+              {% elif items['goldThisRound'] > 0 %}
+                <li class="earned"> Entered a casino and won {{ items['goldThisRound'] }} gold.  Woohoo!  ({{ ('{:%Y/%m/%d %I:%M %p}'.format(items['stamp'])) }})</li>
+              {% else %}
+                <li> Entered a casino and broke even.  ({{ ('{:%Y/%m/%d %I:%M %p}'.format(items['stamp'])) }})</li>
+              {% endif %}
+            {% else %}
+              <li class="earned"> Earned {{ items['goldThisRound'] }} gold from the {{ items['place'] }}.  ({{ ('{:%Y/%m/%d %I:%M %p}'.format(items['stamp'])) }})</li>
+            {% endif %}
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+
+<!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+</body>
+</html>

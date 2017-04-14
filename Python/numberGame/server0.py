@@ -21,13 +21,16 @@ def guess():
     number = int(session['number'])
     if guess < 1 or guess > 100:
         flash("Please enter a number between 1 and 100.", 'error')
+        return redirect('/')
     if guess == number:
         flash(str(number) + " was the number!", 'yep')
+        return redirect('/')
     if guess < number:
         flash("Too low.", 'nope')
+        return redirect('/')
     elif guess > number:
         flash("Too high.", 'nope')
-    return redirect('/')
+        return redirect('/')
 
 @app.route('/reset')
 def reset():
