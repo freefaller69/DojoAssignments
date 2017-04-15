@@ -1,0 +1,121 @@
+body
+{
+    font-family: Tahoma, Geneva, sans-serif;
+
+    padding: 25px;
+}
+
+h3
+{
+    text-decoration: underline;
+}
+
+form{
+    font-family: Tahoma, Geneva, sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    font-style: italic;
+    line-height: 24px;
+
+    position: relative;
+
+    width: 450px;
+    height: 480px;
+    padding: 10px;
+
+    text-decoration: none;
+
+    color: #000;
+    border: 1px solid #999;
+    border: inset 1px solid #333;
+    border-radius: 10px;
+    background: -webkit-linear-gradient(bottom, #ccc, #eee 175px);
+    background:    -moz-linear-gradient(bottom, #ccc, #eee 175px);
+    background:         linear-gradient(bottom, #ccc, #eee 175px);
+    -webkit-box-shadow: 0 0 8px rgba(0, 0, 0, .3);
+       -moz-box-shadow: 0 0 8px rgba(0, 0, 0, .3);
+            box-shadow: 0 0 8px rgba(0, 0, 0, .3);
+}
+
+input
+{
+    display: block;
+
+    width: 375px;
+    height: 25px;
+
+    border: 1px solid #999;
+    -webkit-box-shadow: 0 0 8px rgba(0, 0, 0, .3);
+       -moz-box-shadow: 0 0 8px rgba(0, 0, 0, .3);
+            box-shadow: 0 0 8px rgba(0, 0, 0, .3);
+}
+
+textarea
+{
+    width: 375px;
+    height: 100px;
+
+    border: 1px solid #999;
+    -webkit-box-shadow: 0 0 8px rgba(0, 0, 0, .3);
+       -moz-box-shadow: 0 0 8px rgba(0, 0, 0, .3);
+            box-shadow: 0 0 8px rgba(0, 0, 0, .3);
+}
+
+.button-primary
+{
+    position: absolute;
+    right: 20px;
+    bottom: 10px;
+
+    width: 120px;
+}
+
+table
+{
+    table-layout: fixed;
+    width: 500px;
+    display: block;
+}
+
+td {
+  border-bottom: 1px solid black;
+}
+
+td
+{
+    width: 275px;
+    padding: 5px 20px;
+
+}
+
+.error {
+  font-weight: bold;
+  color: #de1818;
+  background-color: #e9ed2a;
+  width: 450px;
+  padding: 10px;
+  border: 1px solid #000;
+  border-radius: 5px;
+}
+
+#container {
+  width: 650px;
+  position: relative;
+}
+
+a {
+    font-family: Tahoma, Geneva, sans-serif;
+    text-decoration: none;
+    font-size: 14px;
+
+    position: absolute;
+    left: 50px;
+    top: 200px;
+
+    padding: 5px 20px;
+
+    color: #fff;
+    border: 1px solid #999;
+    border-radius: 15px;
+    background: #628691;
+}
