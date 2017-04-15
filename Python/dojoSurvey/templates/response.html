@@ -6,26 +6,29 @@
   <title>Submitted Info</title>
 </head>
 <body>
-  <h3>Submitted Info</h3>
-  <table>
-    <tbody>
-      <tr>
-        <td>Name:</td>
-        <td>{{ session['name'] }}</td>
-      </tr>
-      <tr>
-        <td>Dojo Location:</td>
-        <td>{{ session['location'] }}</td>
-      </tr>
-      <tr>
-        <td>Favorite Language:</td>
-        <td>{{ session['language'] }}</td>
-      </tr>
-      <tr>
-        <td>Comment:</td>
-        <td>{{ session['comments'] }}</td>
-      </tr>
-    </tbody>
-  </table>
+  <div id="container">
+    <a href="/">Home</a>
+    <h3>Submitted Info</h3>
+    <table>
+      <tbody>
+        <tr>
+          <td>Name:</td>
+          <td>{{ session['name'] }}</td>
+        </tr>
+        <tr>
+          <td>Dojo Location:</td>
+          <td>{{ session['location'] }}</td>
+        </tr>
+        <tr>
+          <td>Favorite Language:</td>
+          <td>{{ session['language'] }}</td>
+        </tr>
+        <tr>
+          <td>Comment:</td>
+          <td>{{ session['comments'] }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </body>
 </html>
