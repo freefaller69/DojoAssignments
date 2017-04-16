@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/normalize.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/skeleton.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+  <title>Ninja {{ turtle }}</title>
+</head>
+<body>
+  <div id="wrapper">
+    <header>
+      <nav>
+        <ul>
+          <li><a class="button" href="/ninja/">Ninja</a></li>
+          <li><a class="button leonardo" href="/ninja/leonardo">Blue</a></li>
+          <li><a class="button michelangelo" href="/ninja/michelangelo">Orange</a></li>
+          <li><a class="button raphael" href="/ninja/raphael">Red</a></li>
+          <li><a class="button donatello" href="/ninja/donatello">Purple</a></li>
+        </ul>
+      </nav>
+    </header>
+    <div id="ninjas">
+      {% if turtle %}
+        <img src="../static/img/{{turtle}}.jpg" class="{{ turtle }}" alt="{{ turtle }}">
+        <h3 class="{{ turtle }}">{{ turtle.upper() }}</h3>
+      {% else %}
+        <img src="../static/img/leonardo.jpg" alt="Leonardo">
+        <img src="../static/img/michelangelo.jpg" alt="Michelangelo">
+        <img src="../static/img/raphael.jpg" alt="Raphael">
+        <img src="../static/img/donatello.jpg" alt="Donatello">
+      {% endif %}
+    </div>
+  </div>
+
+</body>
+</html>

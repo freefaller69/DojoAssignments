@@ -1,0 +1,55 @@
+body {
+    font-family: Tahoma, Geneva, sans-serif;
+
+    padding: 25px;
+}
+
+#wrapper {
+  width: 960px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.button {
+  color: #fff;
+  background: #000;
+}
+
+ul {
+  text-decoration: none;
+}
+
+ul li {
+  display: inline-block;
+}
+
+a {
+  text-decoration: none;
+}
+
+h3 {
+  color: #fff;
+  font-size: 36px;
+  font-weight: bold;
+}
+
+.leonardo {
+  background: blue;
+}
+
+.michelangelo {
+  background: orange;
+}
+
+.raphael {
+  background: red;
+}
+
+.donatello {
+  background: purple;
+}
+
+img {
+  width: 250px;
+  height: auto;
+}
