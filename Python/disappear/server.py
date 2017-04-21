@@ -10,7 +10,6 @@ def index():
 @app.route('/ninja/')
 @app.route('/ninja/<turtle>')
 def show_ninja(turtle=None):
-    turtle = turtle.lower()
     if turtle == None:
         return render_template('/ninja.html', turtle=turtle)
     if turtle.lower() == 'leonardo' or turtle.lower() == 'michelangelo' or turtle.lower() == 'raphael' or turtle.lower() == 'donatello':
