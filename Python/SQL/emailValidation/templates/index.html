@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/normalize.css') }}"> -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/skeleton.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+  <title>email validation</title>
+</head>
+<body>
+  <div id="wrapper">
+    <header>
+      <h3>email validation</h3>
+      <nav>
+        <ul>
+          <li><a class="button" href="/">Home</a></li>
+          <li><a class="button" href="/success">Addresses</a></li>
+        </ul>
+      </nav>
+    </header>
+    <div id="content">
+      <h4>Add a Friend</h4>
+      <form action="/register" method="POST">
+        <label>email:</label>
+        <input type="email" name="email" class="form_field" placeholder="email address">
+        <input type="submit" class="button-primary" value="Submit">
+      </form>
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+          {% for message in messages %}
+            <p class="error">{{ message }}</p>
+          {% endfor %}
+        {% endif %}
+      {% endwith %}
+    </div>
+  </div>
+
+</body>
+</html>

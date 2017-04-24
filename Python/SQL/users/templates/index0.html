@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/normalize.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/skeleton.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+  <title>Registration form</title>
+</head>
+<body>
+  <div id="wrapper">
+    <header>
+      <h3>Registration Form</h3>
+      <nav>
+        <ul>
+          <li><a class="button" href="/">Home</a></li>
+          <li><a class="button" href="/users">Users</a></li>
+        </ul>
+      </nav>
+    </header>
+    <div id="content">
+      <a href="/users">Users</a>
+      <form action="/register" method="POST">
+        <label>First Name:</label>
+        <input type="text" name="fName" placeholder="First Name">
+        <label>Last Name:</label>
+        <input type="text" name="lName" placeholder="Last Name">
+        <label>Birthdate:</label>
+        <input type="date" name="birthdate">
+        <label>email:</label>
+        <input type="email" name="email" placeholder="email address">
+        <label>Password:</label>
+        <input type="password" name="pwd" placeholder="password">
+        <label>Confirm Password:</label>
+        <input type="password" name="pwdConfirm" placeholder="Confirm Password">
+        <input type="submit" class="button-primary" value="Submit">
+      </form>
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+          {% for message in messages %}
+            <p class="error">{{ message }}</p>
+          {% endfor %}
+        {% endif %}
+      {% endwith %}
+    </div>
+  </div>
+</body>
+</html>

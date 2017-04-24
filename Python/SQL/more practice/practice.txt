@@ -1,0 +1,31 @@
+select clients.first_name, clients.last_name, billing.amount, billing.charged_datetime
+FROM clients
+JOIN billing on clients.id = billing.clients_id;
+
+SELECT sites.domain_name, leads.first_name, leads.last_name
+FROM sites
+JOIN leads ON sites.id = leads.sites_id;
+
+select clients.first_name as client_first, clients.last_name, sites.domain_name, leads.first_name as leads_first
+FROM clients
+join sites ON clients.id = sites.clients_id
+JOIN leads on sites.id = leads.sites_id;
+
+SELECT clients.first_name, clients.last_name, sites.domain_name
+FROM clients
+LEFT JOIN sites ON clients.id = sites.clients_id;
+
+select clients.first_name, clients.last_name, avg(billing.amount)
+FROM clients
+JOIN billing on clients.id = billing.clients_id
+group by clients.id;
+
+select group_concat(' ',sites.domain_name) as domains, clients.first_name, clients.last_name
+from clients
+join sites on clients.id = sites.clients_id
+group by clients.id;
+
+select COUNT(leads.id), sites.domain_name
+from sites
+join leads on sites.id - leads.sites_id
+group by sites.id;

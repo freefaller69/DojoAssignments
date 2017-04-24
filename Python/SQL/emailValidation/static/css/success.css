@@ -1,0 +1,80 @@
+body {
+    font-family: Tahoma, Geneva, sans-serif;
+
+    padding: 25px;
+}
+
+#wrapper {
+  width: 960px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+header {
+  height: 70px;
+  width: 100%;
+  display: block;
+}
+
+div#content {
+  position: relative;
+}
+
+h3
+{
+    text-decoration: underline;
+    font-size: 2em;
+    background-color: green;
+    padding: 10px;
+}
+
+.button {
+  color: #fff;
+  background: #4c9de7;
+  vertical-align: bottom;
+}
+
+table
+{
+    table-layout: fixed;
+    width: 900px;
+    display: block;
+}
+
+td {
+  border-bottom: 1px solid black;
+}
+
+td, th
+{
+    width: 230px;
+    padding: 5px 10px;
+    vertical-align: top;
+
+}
+
+a {
+    font-family: Tahoma, Geneva, sans-serif;
+    text-decoration: none;
+    font-size: 14px;
+
+    padding: 5px 20px;
+
+    color: #fff;
+    border: 1px solid #999;
+    border-radius: 15px;
+    background: #628691;
+}
+
+
+ul {
+  text-decoration: none;
+}
+
+ul li {
+  display: inline-block;
+}
+
+.field {
+  font-weight: bold;
+}

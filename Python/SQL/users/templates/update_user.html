@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/normalize.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/skeleton.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+  <title>{{user['first_name']}}'s Info</title>
+</head>
+<body>
+  <div id="wrapper">
+    <header>
+      <nav>
+        <ul>
+          <li><a class="button" href="/">Home</a></li>
+          <li><a class="button blue" href="#">Users</a></li>
+        </ul>
+      </nav>
+      <h3>{{user['first_name']}} {{user['last_name']}}</h3>
+    </header>
+    <div id="content">
+      <p><span class="field">First Name:</span> {{user['first_name']}}</p>
+      <p><span class="field">Last Name:</span> {{user['last_name']}}</p>
+      <p><span class="field">email:</span> {{user['email']}}</p>
+      <p><span class="field">Occupation:</span> {{user['occupation']}}</p>
+    </div>
+  </div>
+</body>
+</html>
