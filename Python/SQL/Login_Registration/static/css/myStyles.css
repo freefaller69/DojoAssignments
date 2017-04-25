@@ -1,0 +1,9 @@
+h1 {
+  text-align: center;
+}
+
+div#registration, div#login {
+  margin: 2%;
+  border: 1px solid #555;
+  padding: 2%;
+}

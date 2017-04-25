@@ -1,0 +1,17 @@
+h1 {
+  margin-left: 50%;
+  transform: translate(-25%);
+}
+
+form {
+  display: inline-block;
+}
+
+tr {
+  height: 20px;
+}
+
+td {
+  padding: 0 20px;
+  margin: 0;
+}
