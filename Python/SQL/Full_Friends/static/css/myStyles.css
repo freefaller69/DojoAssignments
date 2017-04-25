@@ -15,3 +15,8 @@ td {
   padding: 0 20px;
   margin: 0;
 }
+
+.error {
+  color: red;
+  font-weight: bold;
+}
