@@ -42,13 +42,14 @@ def register():
     # If errors, flash message(s) and return to registration
     if "_flashes" in session:
         return redirect ('/')
+        # check if email already in database
     check_user_query = "SELECT email FROM users WHERE email = :email"
     check_user_data = {
         "email": data['email']
         }
-    print "isUser:",check_user_data
     isUser = mysql.query_db(check_user_query, check_user_data)
     if not isUser:
+        # submit data to database
         add_user_query = "INSERT INTO users (first_name, last_name, email, pw_hash, created_at, updated_at) VALUES (:first_name, :last_name, :email, :pw_hash, NOW(), NOW())"
         print data['pw_hash']
         mysql.query_db(add_user_query, data)
@@ -59,12 +60,9 @@ def register():
         }
         user = mysql.query_db(user_query, query_data)
 
-        # session['id'] = user['id']
-
         return redirect('/user/'+str(user[0]['id']))
-    # return redirect('/')
     else:
-        flash("Error with email, please verify and reenter.", 'registration_error')
+        flash("Registration information error.  Please verify and resubmit.", 'registration_error')
         return redirect('/')
 
 @app.route('/login', methods=['POST'])
@@ -82,7 +80,6 @@ def login():
         flash("You shall not pass!!!", 'login_error')
         return redirect('/')
     if bcrypt.check_password_hash(user[0]['pw_hash'], password):
-        # redirect goes here
         session['id'] = str(user[0]['id'])
         return redirect('/user/'+str(user[0]['id']))
     else:
@@ -112,7 +109,6 @@ def edit(id):
     # if user in session, url user edits return user to their own user page
     if session['id'] != id:
         return redirect('/edit/'+(session['id']))
-    # user = session['id']
     user_query = "SELECT first_name, last_name, email FROM users WHERE id = :id"
     user_data = {
     "id": id
@@ -120,7 +116,6 @@ def edit(id):
     user = mysql.query_db(user_query, user_data)
     print user
     return render_template('edit.html', user=user[0])
-    # return redirect('/edit/'+(session['id']))
 
 @app.route('/update', methods=['POST'])
 def update():
