@@ -1,14 +1,13 @@
 from flask import Flask, render_template, request, redirect, session, flash
 from mysqlconnection import MySQLConnector
 import re, datetime
+NAME_REGEX = re.compile(r'^[_A-Za-z\'-]{2,}$')
 EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9\.\+_-]+@[a-zA-Z0-9\._-]+\.[a-zA-Z]*$')
-PASSWORD_REGEX = re.compile(r'^(?=.*[^a-zA-Z])(?=.*[a-z])(?=.*[A-Z])\S{8,20}$')
+
 
 app = Flask(__name__)
 mysql = MySQLConnector(app,'fullfriendsdb')
 app.secret_key = 'AHighlySecureSecret'
-
-print mysql.query_db('SELECT * FROM friends')
 
 @app.route('/')
 def index():
@@ -18,18 +17,12 @@ def index():
 
 @app.route('/friends', methods=['POST'])
 def friends():
-    if len(request.form['fName']) < 1:
-        flash("First name cannot be empty.", 'error')
-    elif not (request.form['fName'].isalpha()):
-        flash("First name must be letters only.", 'error')
-    if len(request.form['lName']) < 1:
-        flash("Last name cannot be empty.", 'error')
-    elif not (request.form['lName'].isalpha()):
-        flash("Last name must be letters only.", 'error')
-    if len(request.form['email']) < 1:
-        flash("Email is a required field.", 'error')
-    elif not EMAIL_REGEX.match(request.form['email']):
-        flash("Invalid email address.", 'error')
+    if not NAME_REGEX.match(request.form['fName']):
+        flash("First name entry has non-alphabet characters.", 'registration_error')
+    if not NAME_REGEX.match(request.form['lName']):
+        flash("Last name entry has non-alphabet characters.", 'registration_error')
+    if not EMAIL_REGEX.match(request.form['email']):
+        flash("Invalid email address.", 'registration_error')
     if "_flashes" in session:
         return redirect ('/')
     add_friend_query = "INSERT INTO friends (first_name, last_name, email, created_at, updated_at) VALUES (:first_name, :last_name, :email, NOW(), NOW())"
@@ -38,7 +31,7 @@ def friends():
         'last_name': request.form['lName'],
         'email': request.form['email'],
     }
-    flash ("User added")
+    flash ("User successfully added", 'success')
     mysql.query_db(add_friend_query, data)
     return redirect('/')
 
@@ -53,20 +46,19 @@ def showFriend(id):
 
 @app.route('/friend/edit/<id>', methods=['POST'])
 def update(id):
-    # if len(request.form['fName']) < 1:
-    #     flash("First name cannot be empty.", 'error')
-    # elif not (request.form['fName'].isalpha()):
-    #     flash("First name must be letters only.", 'error')
-    # if len(request.form['lName']) < 1:
-    #     flash("Last name cannot be empty.", 'error')
-    # elif not (request.form['lName'].isalpha()):
-    #     flash("Last name must be letters only.", 'error')
-    # if len(request.form['email']) < 1:
-    #     flash("Email is a required field.", 'error')
-    # elif not EMAIL_REGEX.match(request.form['email']):
-    #     flash("Invalid email address.", 'error')
-    # if "_flashes" in session:
-    #     return render_template('/friend/edit/<id>.html', id=id)
+    if not NAME_REGEX.match(request.form['fName']):
+        flash("Please review your first name entry for non-alphabet characters.", 'registration_error')
+    if not NAME_REGEX.match(request.form['lName']):
+        flash("Please review your last name entry for non-alphabet characters.", 'registration_error')
+    if len(request.form['email']) < 5:
+        flash("Email cannot be empty.", 'registration_error')
+    elif not EMAIL_REGEX.match(request.form['email']):
+        flash("Invalid email address.", 'error')
+
+    if "_flashes" in session:
+        return redirect('/friend/'+id)
+    newuser = mysql.query_db
+
 
     update_query = "UPDATE friends SET first_name = :first_name, last_name = :last_name, email = :email, updated_at = now() WHERE id = :id"
     update_data = {
@@ -78,7 +70,7 @@ def update(id):
     print "update query: ", update_query
     print "update data: ", update_data
     mysql.query_db(update_query, update_data)
-    flash ("User updated")
+    flash ("User successfully updated", 'success')
     return redirect('/')
 
 @app.route('/friend/delete/<id>', methods=['POST'])

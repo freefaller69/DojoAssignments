@@ -2,8 +2,16 @@ h1 {
   text-align: center;
 }
 
-div#registration, div#login {
+div#register, div#login {
   margin: 2%;
   border: 1px solid #555;
   padding: 2%;
+}
+
+header {
+  padding: 3%;
+}
+
+.field {
+  font-weight: bold;
 }

@@ -5,7 +5,7 @@
   <!-- Basic Page Needs
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <meta charset="utf-8">
-  <title>Full Friends List</title>
+  <title>{{user['first_name']}}'s User Information</title>
   <meta name="description" content="">
   <meta name="author" content="">
 
@@ -34,44 +34,30 @@
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <div class="container">
     <div class="row">
-      <div class="twelve columns" style="margin-top: 5%">
-        <h1>Edit Friend - {{friend['first_name']}} {{friend['last_name']}}</h1>
-        <hr>
-        <div id="user">
-          <section id="form" class="five columns">
-            <form action="/friend/edit/{{friend['id']}}" method="POST">
-              <label>First Name:</label>
-              <input type="text" name="fName" placeholder="First Name" value="{{friend['first_name']}}">
-              <label>Last Name:</label>
-              <input type="text" name="lName" placeholder="Last Name" value="{{friend['last_name']}}">
-              <label>email:</label>
-              <input type="email" name="email" placeholder="email" value="{{friend['email']}}">
-              <input type="submit" class="button-primary" value="Update">
-            </form>
-          </section>
-            <section id="messages" class="five columns">
-              {% with messages = get_flashed_messages(category_filter=["success"]) %}
-                {% if messages %}
-                  {% for message in messages %}
-                    <p class="error">{{ message }}</p>
-                  {% endfor %}
-                {% endif %}
-              {% endwith %}
-            {% with messages = get_flashed_messages(category_filter=["registration_error"]) %}
-              {% if messages %}
-              <h5>Please review and correct the following:</h5>
-              <ul>
-                {% for message in messages %}
-                  <li class="error">{{ message }}</li>
-                {% endfor %}
-              </ul>
-              {% endif %}
-            {% endwith %}
-            </section>
-          </div>
+      <header>
+        <div class="two columns">
+          <a href="/" class="button">Home</a>
+        </div>
+        <div class="nine columns">
+          <h3>{{user['first_name']}} {{user['last_name']}}</h3>
+        </div>
+      </header>
+    </div>
+    <div class="row">
+      <div class="twelve columns" style="margin: 5%">
+        <div id="user" class="five columns">
+          <p><span class="field">First Name:</span> {{user['first_name']}}</p>
+          <p><span class="field">Last Name:</span> {{user['last_name']}}</p>
+          <p><span class="field">email:</span> {{user['email']}}</p>
+        </div>
+        <div id="" class="five columns">
+
+        </div>
+
       </div>
     </div>
   </div>
+
 
 <!-- End Document
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->

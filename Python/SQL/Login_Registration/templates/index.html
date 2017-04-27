@@ -34,12 +34,15 @@
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <div class="container">
     <div class="row">
-      <div class="twelve columns" style="margin: 5%">
+      <header class="twelve columns">
         <h1>Login and Registration</h1>
-        <div id="registration" class="five columns">
+      </header>
+    </div>
+    <div class="row">
+      <div class="twelve columns">
+        <div id="register" class="five columns">
           <h5>New visitor?  Register here.</h5>
           <form action="/register" method="POST">
-            <input type="hidden" name="action" value="register">
             <label>First Name:</label>
             <input type="text" name="fName" placeholder="First Name">
             <label>Last Name:</label>
@@ -47,12 +50,12 @@
             <label>email:</label>
             <input type="email" name="email" placeholder="email address">
             <label>Password:</label>
-            <input type="password" name="new_password" placeholder="select a password">
+            <input type="password" name="new_pwd" placeholder="enter a password">
             <label>Confirm Password:</label>
-            <input type="password" name="confirm_password" placeholder="confirm password entry">
+            <input type="password" name="pwdConfirm" placeholder="confirm password entry">
             <input type="submit" class="button-primary" value="Submit">
           </form>
-          {% with messages = get_flashed_messages() %}
+          {% with messages = get_flashed_messages(category_filter=["registration_error"]) %}
             {% if messages %}
               {% for message in messages %}
                 <p class="error">{{ message }}</p>
@@ -63,14 +66,13 @@
         <div id="login" class="five columns">
           <h5>Login here.</h5>
           <form action="/login" method="POST">
-            <input type="hidden" name="action" value="login">
             <label>email:</label>
             <input type="email" name="email" placeholder="email address">
             <label>Password:</label>
-            <input type="password" name="password" placeholder="enter password">
+            <input type="password" name="pwd" placeholder="">
             <input type="submit" class="button-primary" value="Submit">
           </form>
-          {% with messages = get_flashed_messages() %}
+          {% with messages = get_flashed_messages(category_filter=["login_error"]) %}
             {% if messages %}
               {% for message in messages %}
                 <p class="error">{{ message }}</p>
