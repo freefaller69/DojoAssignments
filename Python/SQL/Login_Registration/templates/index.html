@@ -57,9 +57,12 @@
           </form>
           {% with messages = get_flashed_messages(category_filter=["registration_error"]) %}
             {% if messages %}
+            <h5>Please review and correct the following:</h5>
+            <ul>
               {% for message in messages %}
-                <p class="error">{{ message }}</p>
+                <li class="error">{{ message }}</li>
               {% endfor %}
+            </ul>
             {% endif %}
           {% endwith %}
         </div>
@@ -72,10 +75,12 @@
             <input type="password" name="pwd" placeholder="">
             <input type="submit" class="button-primary" value="Submit">
           </form>
+          <a href="/logout" class="button">Log out</a>
           {% with messages = get_flashed_messages(category_filter=["login_error"]) %}
             {% if messages %}
               {% for message in messages %}
-                <p class="error">{{ message }}</p>
+                <h5 class="error">{{ message }}</h5>
+                <img src="../static/img/gandalf2.jpg" class="nopass" alt="">
               {% endfor %}
             {% endif %}
           {% endwith %}

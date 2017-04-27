@@ -5,7 +5,7 @@
   <!-- Basic Page Needs
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <meta charset="utf-8">
-  <title>{{user['first_name']}}'s User Information</title>
+  <title>All User Information</title>
   <meta name="description" content="">
   <meta name="author" content="">
 
@@ -35,31 +35,46 @@
   <div class="container">
     <div class="row">
       <header>
-        <div class="twelve columns">
+        <div class="two columns">
           <a href="/" class="button">Home</a>
-          <a href="/edit/{{user['id']}}" class="button">Edit</a>
-          <a href="/logout" class="button">Log out</a>
-          <a href="#" class="button error">Delete</a>
         </div>
-        <div class="twelve columns">
-          <h3>{{user['first_name']}} {{user['last_name']}}</h3>
+        <div class="nine columns">
+          <h3>All Users</h3>
         </div>
       </header>
     </div>
     <div class="row">
       <div class="twelve columns" style="margin: 5%">
-        <div id="user" class="five columns">
-          <p><span class="field">First Name:</span> {{user['first_name']}}</p>
-          <p><span class="field">Last Name:</span> {{user['last_name']}}</p>
-          <p><span class="field">email:</span> {{user['email']}}</p>
-        </div>
-        <div id="" class="five columns">
+        <table>
+          <thead>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>email</th>
+            <th>Actions</th>
+          </thead>
+          <tbody>
+            {% for user in all_users %}
+            <tr>
+              <td>{{user['first_name']}}</td>
+              <td>{{user['last_name']}}</td>
+              <td>{{user['email']}}</td>
+              <td>
+                <a class="button" href="/user/{{user['id']}}">Show</a>
+                <form action="/user/delete/{{user['id']}}" method="POST">
+                  <input class="button" type="submit" value="Delete">
+                </form>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
 
         </div>
 
       </div>
     </div>
   </div>
+
 
 <!-- End Document
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->

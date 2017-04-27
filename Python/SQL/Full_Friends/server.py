@@ -57,7 +57,6 @@ def update(id):
 
     if "_flashes" in session:
         return redirect('/friend/'+id)
-    newuser = mysql.query_db
 
 
     update_query = "UPDATE friends SET first_name = :first_name, last_name = :last_name, email = :email, updated_at = now() WHERE id = :id"
@@ -67,8 +66,6 @@ def update(id):
         'email': request.form['email'],
         'id': id
     }
-    print "update query: ", update_query
-    print "update data: ", update_data
     mysql.query_db(update_query, update_data)
     flash ("User successfully updated", 'success')
     return redirect('/')
