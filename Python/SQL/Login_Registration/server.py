@@ -78,6 +78,9 @@ def login():
         'email': email
     }
     user = mysql.query_db(user_query, query_data)
+    if not user:
+        flash("You shall not pass!!!", 'login_error')
+        return redirect('/')
     if bcrypt.check_password_hash(user[0]['pw_hash'], password):
         # redirect goes here
         session['id'] = str(user[0]['id'])
@@ -88,8 +91,10 @@ def login():
 
 @app.route('/user/<id>')
 def showUser(id):
+    # if user not logged in, redirect to login/registration
     if not session:
         return redirect('/')
+    # if user in session, url user edits return user to their own user page
     if session['id'] != id:
         return redirect('/user/'+(session['id']))
     user_query = "SELECT * FROM users WHERE id = :id"
@@ -101,8 +106,10 @@ def showUser(id):
 
 @app.route('/edit/<id>')
 def edit(id):
+    # if user not logged in, redirect to login/registration
     if not session:
         return redirect('/')
+    # if user in session, url user edits return user to their own user page
     if session['id'] != id:
         return redirect('/edit/'+(session['id']))
     # user = session['id']
@@ -141,6 +148,17 @@ def update():
     flash ("User successfully updated", 'success')
     return redirect('/user/'+(session['id']))
 
+
+@app.route('/confirm_delete')
+def confirm_delete():
+    flash("Confirm deletion", 'confirm_delete')
+    if "_flashes" in session:
+        return redirect('/user/'+(session['id']))
+
+@app.route('/cancel')
+def cancel():
+    return redirect('/user/'+(session['id']))
+
 @app.route('/user/delete/<id>', methods=['POST'])
 def delete(id):
     delete_query = "DELETE FROM users WHERE id = :id"
@@ -148,6 +166,7 @@ def delete(id):
         'id': id
     }
     mysql.query_db(delete_query, delete_data)
+    flash("User deleted.")
     return redirect('/')
 
 @app.route('/allusers')

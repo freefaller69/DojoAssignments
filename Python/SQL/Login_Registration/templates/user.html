@@ -39,7 +39,7 @@
           <a href="/" class="button">Home</a>
           <a href="/edit/{{user['id']}}" class="button">Edit</a>
           <a href="/logout" class="button">Log out</a>
-          <a href="#" class="button error">Delete</a>
+          <a href="/confirm_delete" class="button error">Delete</a>
         </div>
         <div class="twelve columns">
           <h3>{{user['first_name']}} {{user['last_name']}}</h3>
@@ -54,7 +54,18 @@
           <p><span class="field">email:</span> {{user['email']}}</p>
         </div>
         <div id="" class="five columns">
-
+          {% with messages = get_flashed_messages(category_filter=["confirm_delete"]) %}
+            {% if messages %}
+              {% for message in messages %}
+                <h5 class="error">{{ message }}</h5>
+              {% endfor %}
+              <p>Are you sure you wish to delete {{user['first_name']}} {{user['last_name']}}?</p>
+              <form action="/user/delete/{{user['id']}}" method="POST" class="confirm">
+                <input type="submit" class="button-primary" value="Yes">
+              </form>
+              <a href="/cancel" class="button">Cancel</a>
+            {% endif %}
+          {% endwith %}
         </div>
 
       </div>

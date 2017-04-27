@@ -25,3 +25,15 @@ header {
   width: 340px;
   height: auto;
 }
+
+form.confirm {
+  width: 150px;
+  display: inline;
+  margin-right: 20px;
+}
+
+a.button {
+  color: #FFF;
+  background-color: #33C3F0;
+  border-color: #33C3F0;
+}

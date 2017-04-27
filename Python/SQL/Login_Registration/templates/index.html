@@ -75,7 +75,6 @@
             <input type="password" name="pwd" placeholder="">
             <input type="submit" class="button-primary" value="Submit">
           </form>
-          <a href="/logout" class="button">Log out</a>
           {% with messages = get_flashed_messages(category_filter=["login_error"]) %}
             {% if messages %}
               {% for message in messages %}
