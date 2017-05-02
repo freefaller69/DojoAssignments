@@ -5,7 +5,7 @@
   <!-- Basic Page Needs
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <meta charset="utf-8">
-  <title>Full Friends List</title>
+  <title>Edit User Info</title>
   <meta name="description" content="">
   <meta name="author" content="">
 
@@ -36,16 +36,16 @@
     <div class="row">
       <div class="twelve columns" style="margin-top: 5%">
         <h1>Edit Profile</h1>
-        <h4>{{user['first_name']}} {{user['last_name']}}</h4>
+        <h4>{{session['user']['first_name']}} {{session['user']['last_name']}}</h4>
         <hr>
         <div id="update_form" class="six columns">
         <form action="/update" method="POST">
           <label>First Name:</label>
-          <input type="text" name="fName" value="{{user['first_name']}}">
+          <input type="text" name="fName" value="{{session['user']['first_name']}}">
           <label>Last Name:</label>
-          <input type="text" name="lName" value="{{user['last_name']}}">
+          <input type="text" name="lName" value="{{session['user']['last_name']}}">
           <label>email:</label>
-          <input type="email" name="email" value="{{user['email']}}">
+          <input type="email" name="email" value="{{session['user']['email']}}">
           <input type="submit" class="button-primary" value="Submit">
         </form>
         </div>

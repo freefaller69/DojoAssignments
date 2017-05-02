@@ -1,57 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
   <!-- Basic Page Needs
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <meta charset="utf-8">
-  <title>{{user['first_name']}}'s User Information</title>
+  <title>{{session['user']['first_name']}}'s User Information</title>
   <meta name="description" content="">
   <meta name="author" content="">
-
   <!-- Mobile Specific Metas
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
   <!-- FONT
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
-
   <!-- CSS
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <link rel="stylesheet" href="../static/css/normalize.css">
   <link rel="stylesheet" href="../static/css/skeleton.css">
   <link rel="stylesheet" href="../static/css/myStyles.css">
-
   <!-- Favicon
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <link rel="icon" type="image/png" href="images/favicon.png">
-
 </head>
 <body>
-
   <!-- Primary Page Layout
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <div class="container">
     <div class="row">
       <header>
         <div class="twelve columns">
-          <a href="/" class="button">Home</a>
-          <a href="/edit/{{user['id']}}" class="button">Edit</a>
+          <a href="/wall" class="button">The Wall</a>
+          <a href="/edit/{{session['user']['id']}}" class="button">Edit</a>
           <a href="/logout" class="button">Log out</a>
           <a href="/confirm_delete" class="button error">Delete</a>
         </div>
         <div class="twelve columns">
-          <h3>{{user['first_name']}} {{user['last_name']}}</h3>
+          <h3>{{session['user']['first_name']}} {{session['user']['last_name']}}</h3>
         </div>
       </header>
     </div>
     <div class="row">
-      <div class="twelve columns" style="margin: 5%">
+      <div class="twelve columns">
         <div id="user" class="five columns">
-          <p><span class="field">First Name:</span> {{user['first_name']}}</p>
-          <p><span class="field">Last Name:</span> {{user['last_name']}}</p>
-          <p><span class="field">email:</span> {{user['email']}}</p>
+          <p><span class="field">First Name:</span> {{session['user']['first_name']}}</p>
+          <p><span class="field">Last Name:</span> {{session['user']['last_name']}}</p>
+          <p><span class="field">email:</span> {{session['user']['email']}}</p>
         </div>
         <div id="" class="five columns">
           {% with messages = get_flashed_messages(category_filter=["confirm_delete"]) %}
@@ -59,15 +52,14 @@
               {% for message in messages %}
                 <h5 class="error">{{ message }}</h5>
               {% endfor %}
-              <p>Are you sure you wish to delete {{user['first_name']}} {{user['last_name']}}?</p>
-              <form action="/user/delete/{{user['id']}}" method="POST" class="confirm">
+              <p>Are you sure you wish to delete {{session['user']['first_name']}} {{session['user']['last_name']}}?</p>
+              <form action="/user/delete/{{session['user']['id']}}" method="POST" class="confirm">
                 <input type="submit" class="button-primary" value="Yes">
               </form>
-              <a href="/cancel" class="button">Cancel</a>
+              <a href="/user/{{session['user']['id']}}" class="button">Cancel</a>
             {% endif %}
           {% endwith %}
         </div>
-
       </div>
     </div>
   </div>

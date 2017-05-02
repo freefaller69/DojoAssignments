@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  <title>The Wall</title>
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="stylesheet" href="../static/css/normalize.css">
+  <link rel="stylesheet" href="../static/css/skeleton.css">
+  <link rel="stylesheet" href="../static/css/myStyles.css">
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="images/favicon.png">
+</head>
+<body>
+  <!-- Primary Page Layout
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <div class="container">
+    <header class="row">
+      <div class="five columns">
+        <h3>CodingDojo Wall</h3>
+      </div>
+      <div class="welcome seven columns">
+        <h5 class="greeting">Welcome <a href="/user/user_id">{{session['user']['first_name']}}</a></h5>
+        <a href="/logout" class="button">Log out</a>
+      </div>
+    </header>
+    <div id="post" class="row">
+      <div class="twelve columns">
+        <form id="message_form" action="/wall/message" method="POST">
+          <label class="msg">Post a message
+          {% with messages = get_flashed_messages(category_filter=["message_error"]) %}
+          {% if messages %}
+            {% for message in messages %}
+            {% endfor %}
+          {% endif %}
+          {% endwith %}
+          </label>
+          <p class="error">{{ message }}</p>
+          <textarea name="message" class="message_input"></textarea>
+          <input type="submit" class="button-primary right" value="Post">
+      </form>
+      </div>
+    </div>
+    <div class="row">
+      <div id="messages" class="twelve columns">
+        {% if user_messages %}
+          {% for msg in user_messages %}
+          <h6>{{ msg['first_name'] }}{{ msg['last_name'] }} - {{ msg['created_at'].strftime('%B %d, %Y') }}</h6>
+            <p class="msg">{{ msg['message'] }}{{ msg['msg_id'] }}</p>
+            {% if user_comments %}
+              {% for group in user_comments|groupby('message_id') %}
+              <p>{{ group.grouper }}</p>
+              {% for comment in group.list %}
+                <p class="msg">{{ comment['user_comment'] }}</p>
+              {% endfor %}
+              {% endfor %}
+            {% endif %}
+              <form id="comment_form" action="/wall/message/comment/{{ msg['msg_id'] }}" method="POST">
+
+                <label class="msg">Post a comment</label>
+                {% with messages = get_flashed_messages(category_filter=["comment_error"]) %}
+                {% if messages %}
+                  {% for message in messages %}
+                  <p class="error">{{ message }}</p>
+                  {% endfor %}
+                {% endif %}
+                {% endwith %}
+                <input type="hidden" value="{{ msg['msg_id'] }}">
+                <textarea name="comment" class="comment_input"></textarea>
+                <input type="submit" class="button-primary right" value="Post">
+              </form>
+          {% endfor %}
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+<!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+</body>
+</html>
