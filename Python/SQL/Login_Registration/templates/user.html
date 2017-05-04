@@ -31,8 +31,8 @@
         <div class="twelve columns">
           <a href="/wall" class="button">The Wall</a>
           <a href="/edit/{{session['user']['id']}}" class="button">Edit</a>
+          <a href="/confirm_delete" id="delete" class="button error">Delete</a>
           <a href="/logout" class="button">Log out</a>
-          <a href="/confirm_delete" class="button error">Delete</a>
         </div>
         <div class="twelve columns">
           <h3>{{session['user']['first_name']}} {{session['user']['last_name']}}</h3>

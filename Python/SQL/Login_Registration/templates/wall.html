@@ -18,6 +18,12 @@
   <link rel="stylesheet" href="../static/css/normalize.css">
   <link rel="stylesheet" href="../static/css/skeleton.css">
   <link rel="stylesheet" href="../static/css/myStyles.css">
+  <!-- Scripts
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <script
+  src="https://code.jquery.com/jquery-3.2.1.js"
+  integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+  crossorigin="anonymous"></script>
   <!-- Favicon
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <link rel="icon" type="image/png" href="images/favicon.png">
@@ -70,10 +76,10 @@
               {% endif %}
             </ul>
             </div>
+            <div>
+              <h6 class="comment_label">Post a comment</h6>
+                <form class="comment_form" action="/wall/message/comment/{{ msg['msg_id'] }}" method="POST">
 
-                <form id="comment_form" action="/wall/message/comment/{{ msg['msg_id'] }}" method="POST">
-
-                  <label class="msg">Post a comment</label>
                   {% with messages = get_flashed_messages(category_filter=["comment_error"]) %}
                   {% if messages %}
                     {% for message in messages %}
@@ -85,11 +91,24 @@
                   <textarea name="comment" class="comment_input"></textarea>
                   <input type="submit" class="button-primary right" value="Post">
                 </form>
+                <div class="separator"></div>
             {% endfor %}
           {% endif %}
+          </div>
       </div>
     </div>
   </div>
+
+  <script>
+    $(document).ready(function(){
+      $('.comment_form').toggle();
+      $('.comment_label').on("click", function() {
+        $(this).siblings('.comment_form').toggle();
+      });
+
+
+    });
+  </script>
 
 <!-- End Document
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->

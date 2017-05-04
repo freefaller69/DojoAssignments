@@ -72,7 +72,7 @@ def login():
         'email': email
     }
     user = mysql.query_db(user_query, query_data)
-    if len(user) == 1 and bcrypt.check_password_hash(user[0]['pw_hash'], password):
+    if user and bcrypt.check_password_hash(user[0]['pw_hash'], password):
         session['user'] = {
             "LoggedIn": True,
             "id": unicode(user[0]['id']),
@@ -163,7 +163,9 @@ def delete(id):
 def theWall():
     user_id = session['user']['id']
     message_query = "SELECT messages.id as msg_id, message, messages.created_at, message_id, users.first_name, users.last_name FROM messages JOIN users on users.id = user_id LEFT JOIN comments ON messages.id = message_id GROUP BY message_id ORDER BY messages.created_at DESC"
+
     user_messages = mysql.query_db(message_query)
+
     user_comment_query = "SELECT user_comment, comments.created_at, users.first_name, users.last_name, message_id FROM comments JOIN users ON users.id = user_id ORDER BY comments.created_at"
     user_comments = mysql.query_db(user_comment_query)
     if len(user_messages) == 0:
