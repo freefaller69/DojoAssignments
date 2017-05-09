@@ -11,6 +11,8 @@ bcrypt = Bcrypt(app)
 mysql = MySQLConnector(app,'userssecuredb')
 app.secret_key = 'AHighlySecureSecret'
 
+user_id = ""
+
 @app.route('/', methods=['GET'])
 def index():
     return render_template('index.html')
@@ -56,6 +58,7 @@ def register():
             'last_name': request.form['lName'],
             'email': request.form['email'],
         }
+        global user_id
         user_id = session['user']['id']
         flash("Registration successful", 'success')
         return redirect('/wall')
@@ -80,6 +83,7 @@ def login():
             "last_name": user[0]['last_name'],
             "email": user[0]['email'],
         }
+        global user_id
         user_id = session['user']['id']
         return redirect('/wall')
     else:
@@ -91,7 +95,6 @@ def showUser(id):
     # if user not logged in, redirect to login/registration
     if not session:
         return redirect('/')
-    user_id = session['user']['id']
     # if user in session, url user edits return user to their own user page
     if unicode(session['user']['id']) != id:
         return redirect('/user/'+user_id)
@@ -102,7 +105,6 @@ def edit(id):
     # if user not logged in, redirect to login/registration
     if not session:
         return redirect('/')
-    user_id = session['user']['id']
     # if user in session, url user edits return user to their own user page
     if unicode(session['user']['id']) != id:
         return redirect('/edit/'+user_id)
@@ -110,7 +112,6 @@ def edit(id):
 
 @app.route('/update', methods=['POST'])
 def update():
-    user_id = session['user']['id']
     user_update_data = {
         'first_name': request.form['fName'],
         'last_name': request.form['lName'],
@@ -144,7 +145,6 @@ def update():
 
 @app.route('/confirm_delete')
 def confirm_delete():
-    user_id = session['user']['id']
     flash("Confirm deletion", 'confirm_delete')
     if "_flashes" in session:
         return redirect('/user/'+user_id)
@@ -161,7 +161,6 @@ def delete(id):
 
 @app.route('/wall')
 def theWall():
-    user_id = session['user']['id']
     message_query = "SELECT messages.id as msg_id, message, messages.created_at, message_id, users.first_name, users.last_name FROM messages JOIN users on users.id = user_id LEFT JOIN comments ON messages.id = message_id GROUP BY message_id ORDER BY messages.created_at DESC"
 
     user_messages = mysql.query_db(message_query)
@@ -175,7 +174,6 @@ def theWall():
 
 @app.route('/wall/message', methods=['POST'])
 def post_message():
-    user_id = session['user']['id']
     new_message_data = {
         'message': request.form['message'],
         'user_id': user_id
@@ -189,7 +187,6 @@ def post_message():
 
 @app.route('/wall/message/comment/<msg_id>', methods=['POST'])
 def post_comment(msg_id):
-    user_id = session['user']['id']
     new_comment_data = {
         'comment': request.form['comment'],
         'user_id': user_id,
@@ -200,6 +197,12 @@ def post_comment(msg_id):
         mysql.query_db(new_comment_query, new_comment_data)
     return redirect('/wall')
 
+# @app.route('/confirm_msg_delete/<msg_id>')
+# def confirm_msg_delete(msg_id):
+#     flash("Confirm deletion", 'confirm_delete/<msg_id>')
+#     if "_flashes" in session:
+#         return redirect('/wall')
+
 @app.route('/allusers')
 def allusers():
     query_all = ('SELECT * FROM users')
@@ -209,6 +212,7 @@ def allusers():
 @app.route('/logout')
 def logout():
     session.clear()
+    print "User ID:",user_id
     return redirect('/')
 
 app.run(debug=True, port=8888)

@@ -63,7 +63,8 @@
         {% if user_messages %}
           {% for msg in user_messages %}
           <h6>{{ msg['first_name'] }} {{ msg['last_name'] }} - <span class="timestamp">{{ msg['created_at'].strftime('%B %d, %Y, %I:%M %p') }}</span></h6>
-            <p class="msg">{{ msg['message'] }}</p>
+            <p class="msg">{{ msg['message'] }} <a href="#"  class="delete_msg">Delete</a></p>
+            
             <div id="comments">
               <ul>
               {% if user_comments %}
@@ -103,7 +104,7 @@
     $(document).ready(function(){
       $('.comment_form').toggle();
       $('.comment_label').on("click", function() {
-        $(this).siblings('.comment_form').toggle();
+        $(this).siblings('.comment_form').slideToggle(500);
       });
 
 
