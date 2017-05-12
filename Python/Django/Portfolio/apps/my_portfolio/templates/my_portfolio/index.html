@@ -3,10 +3,42 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  {% load staticfiles %}
+  <link rel="stylesheet" href="{% static 'my_portfolio/css/materialize.css' %}">
+  <link rel="stylesheet" href="{% static 'my_portfolio/css/style.css' %}">
   <title>Portfolio</title>
 </head>
 <body>
-  <h1>Welcome to My Portfolio</h1>
+  <div class="container">
+    <header class="row">
+      <div class="col s12 offset-s3"><h1>Hi, I'm Michael</h1></div>
+      <div class="col m6 s6 offset-s5"><h4>Welcome to My Portfolio</h4></div>
+    </header>
+
+    <div class="row">
+      <div class="col s12 m4">
+        <h5 class="card-title"><a href="/projects">Projects</a></h5>
+        <div class="card small square">
+          <p>I have a variety of projects, both personal and contract.  They are build using Python, Django, and JavaScript.</p>
+        </div>
+      </div>
+      <div class="col s12 m4">
+        <h5 class="card-title"><a href="/about">About Me</a></h5>
+        <div class="card small square">
+          <p>A little about my background and why I do what I do.</p>
+        </div>
+      </div>
+      <div class="col s12 m4">
+        <h5 class="card-title"><a href="/testimonials">Testimonials</a></h5>
+        <div class="card small square">
+          <p>What my clients and mentors have to say about my projects and work ethic.</p>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+  <script src="http://code.jquery.com/jquery-latest.js"></script>
+  <script type="text/javascript" src="{% static 'my_portfolio/js/materialize.js' %}"></script>
 </body>
 </html>

@@ -17,3 +17,12 @@ def index(request):
 def show(request, id):
     print(request.method)
     return render(request, "hello/show_users.html")
+
+def projects(request):
+    return render(request, "projects/index.html")
+
+def about(request):
+    return render(request, "about/index.html")
+
+def testimonials(request):
+    return render(request, "testimonials/index.html")

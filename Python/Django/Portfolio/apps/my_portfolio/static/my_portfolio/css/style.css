@@ -1,0 +1,24 @@
+h1, h4, h5 {
+  margin: 5px;
+  padding: 5px;
+}
+
+.square {
+  padding: 5px 10px;
+}
+
+.brand-logo {
+  margin-left: 20px;
+}
+
+.indent {
+  margin-left: 30px;
+}
+
+.quote {
+  font-size: 1.5em;
+}
+
+.citation {
+  font-style: italic;
+}

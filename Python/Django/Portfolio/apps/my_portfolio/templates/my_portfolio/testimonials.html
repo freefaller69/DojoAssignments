@@ -3,14 +3,31 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  {% load staticfiles %}
+  <link rel="stylesheet" href="{% static 'my_portfolio/css/materialize.css' %}">
+  <link rel="stylesheet" href="{% static 'my_portfolio/css/style.css' %}">
   <title>Testimonials</title>
 </head>
 <body>
-  <h1>Testimonials</h1>
-  <div id="testimonials">
-    <p>"He is part of the rebel alliance and a traitor!" <span>D. Vader</span></p>
-    <p>"Stay classy." <span>R. Burgundy</span></p>
+  <div class="container">
+    <nav>
+      <div class="nav-wrapper teal">
+        <a href="/" class="brand-logo">Home</a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+          <li><a href="/projects">Projects</a></li>
+          <li><a href="/about">About Me</a></li>
+        </ul>
+      </div>
+    </nav>
+    <header class="row">
+      <div class="col s12 offset-s1"><h4>Testimonials</h4></div>
+    </header>
+    <div class="row">
+      <div class="col s6">
+        <p class="indent"><span class="quote">"He is part of the rebel alliance and a traitor!"</span> <span class="citation">~D. Vader</span></p>
+        <p class="indent"><span class="quote">"Stay classy."</span> <span class="citation">~R. Burgundy</span></p>
+      </div>
+    </div>
   </div>
 </body>
 </html>
