@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  <title>Survey</title>
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  {% load staticfiles %}
+  <link rel="stylesheet" href="{% static 'survey/css/normalize.css' %}">
+  <link rel="stylesheet" href="{% static 'survey/css/skeleton.css' %}">
+  <link rel="stylesheet" href="{% static 'survey/css/styles.css' %}">
+
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="images/favicon.png">
+
+</head>
+<body>
+  <div class="container">
+    <div class="row">
+      <h3>Submitted Info</h3>
+      <table>
+        <tbody>
+          <tr>
+            <td>Name:</td>
+            <td>{{ request.session.name }}</td>
+          </tr>
+          <tr>
+            <td>Dojo Location:</td>
+            <td>{{ request.session.location }}</td>
+          </tr>
+          <tr>
+            <td>Favorite Language:</td>
+            <td>{{ request.session.language }}</td>
+          </tr>
+          <tr>
+            <td>Comment:</td>
+            <td>{{ request.session.comments }}</td>
+          </tr>
+        </tbody>
+      </table>
+      <a href="/" class="button">Go Back</a>
+    </div>
+  </div>
+</body>
+</html>
