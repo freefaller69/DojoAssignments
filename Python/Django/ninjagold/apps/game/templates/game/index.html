@@ -36,10 +36,6 @@
       <header class="twelve columns">
         <p>Your Gold: <span>{{ request.session.gold }}</span></p>
         <a href="/reset" id="newGame" class="button">NEW GAME</a>
-        <!-- <form action="/reset" id="newGame" method="post">
-          {% csrf_token %}
-          <input type="submit" name="reset" value="New Game">
-        </form> -->
       </header>
     </div>
     <div id="places" class="row">
