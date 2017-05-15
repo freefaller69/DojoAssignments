@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  <title>Disappearing Ninjas</title>
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  {% load staticfiles %}
+  <link rel="stylesheet" href="{% static 'turtle_power/css/normalize.css' %}">
+  <link rel="stylesheet" href="{% static 'turtle_power/css/skeleton.css' %}">
+  <link rel="stylesheet" href="{% static 'turtle_power/css/myStyles.css' %}">
+
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="images/favicon.png">
+
+</head>
+<body>
+
+  <!-- Primary Page Layout
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <div class="container">
+    <div class="row">
+      <header>
+        <nav>
+          <ul>
+            <li><a class="button" href="/ninja">Ninja</a></li>
+            <li><a class="button blue" href="/ninja/blue">Blue</a></li>
+            <li><a class="button orange" href="/ninja/orange">Orange</a></li>
+            <li><a class="button red" href="/ninja/red">Red</a></li>
+            <li><a class="button purple" href="/ninja/purple">Purple</a></li>
+          </ul>
+        </nav>
+      </header>
+      <div id="ninjas">
+        {% if turtle %}
+          <img src="../static/img/{{name}}.jpg" class="{{ name }}" alt="{{ name }}">
+          <h3 class="{{ name }}">{{ name.upper() }}</h3>
+        <!-- {% else %}
+          <img src="../static/img/leonardo.jpg" alt="Leonardo">
+          <img src="../static/img/michelangelo.jpg" alt="Michelangelo">
+          <img src="../static/img/raphael.jpg" alt="Raphael">
+          <img src="../static/img/donatello.jpg" alt="Donatello"> -->
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+<!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  <title>Disappearing Ninjas</title>
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  {% load staticfiles %}
+  <link rel="stylesheet" href="{% static 'turtle_power/css/normalize.css' %}">
+  <link rel="stylesheet" href="{% static 'turtle_power/css/skeleton.css' %}">
+  <link rel="stylesheet" href="{% static 'turtle_power/css/myStyles.css' %}">
+
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="images/favicon.png">
+
+</head>
+<body>
+
+  <!-- Primary Page Layout
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <div class="container">
+    <div class="row">
+      <header>
+        <h1>Disappearing Ninjas</h1>
+        <nav>
+          <ul>
+            <li><a class="button" href="/ninja">Ninja</a></li>
+            <li><a class="button blue" href="/ninja/blue">Blue</a></li>
+            <li><a class="button orange" href="/ninja/orange">Orange</a></li>
+            <li><a class="button red" href="/ninja/red">Red</a></li>
+            <li><a class="button purple" href="/ninja/purple">Purple</a></li>
+          </ul>
+        </nav>
+      </header>
+      <div id="ninjas">
+        {% if turtle %}
+        {% if turtle == "all" %}
+          <img src="{% static 'turtle_power/img/leonardo.jpg' %}">
+          <img src="{% static 'turtle_power/img/michelangelo.jpg' %}">
+          <img src="{% static 'turtle_power/img/raphael.jpg' %}">
+          <img src="{% static 'turtle_power/img/donatello.jpg' %}">
+        {% elif turtle == "leonardo" %}
+          <img src="{% static 'turtle_power/img/leonardo.jpg' %}" class="{{ turtle }}" alt="{{ turtle }}">
+        {% elif turtle == "michelangelo" %}
+          <img src="{% static 'turtle_power/img/michelangelo.jpg' %}" class="{{ turtle }}" alt="{{ turtle }}">
+        {% elif turtle == "raphael" %}
+          <img src="{% static 'turtle_power/img/raphael.jpg' %}" class="{{ turtle }}" alt="{{ turtle }}">
+        {% elif turtle == "donatello" %}
+          <img src="{% static 'turtle_power/img/donatello.jpg' %}" class="{{ turtle }}" alt="{{ turtle }}">
+        {% elif turtle == "notapril" %}
+          <img src="{% static 'turtle_power/img/notapril.jpg' %}" class="{{ turtle }}" alt="{{ turtle }}">
+        {% endif %}
+        <h3 class="{{ turtle }}">{{ caption }}</h3>
+        {% else %}
+        <h4>No ninjas here</h4>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+<!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+</body>
+</html>
