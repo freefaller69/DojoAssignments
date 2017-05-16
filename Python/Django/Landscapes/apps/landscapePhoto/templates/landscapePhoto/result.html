@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  {% load staticfiles %}
+  <title>Document</title>
+</head>
+<body>
+  <a href="/">Home</a>
+  <h4>Your random image of the day:</h4>
+  {% if photo == "snow" %}
+    <img src="{% static 'landscapePhoto/img/snow.jpg' %}">
+  {% elif photo == "desert" %}
+    <img src="{% static 'landscapePhoto/img/desert.jpg' %}">
+  {% elif photo == "forest" %}
+    <img src="{% static 'landscapePhoto/img/forest.jpg' %}">
+  {% elif photo == "vineyard" %}
+    <img src="{% static 'landscapePhoto/img/vineyard.jpg' %}">
+  {% elif photo == "tropical" %}
+    <img src="{% static 'landscapePhoto/img/tropical.jpg' %}">
+  {% endif %}
+</body>
+</html>
