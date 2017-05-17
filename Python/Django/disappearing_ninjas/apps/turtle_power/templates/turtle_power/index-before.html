@@ -48,13 +48,26 @@
         </nav>
       </header>
       <div id="ninjas">
-        {% if turtles %}
-          {% for turtle in turtles %}
-          <img src="{% static turtle.1 %}">
-          <h3 class="{{ turtle.0 }}">{{ turtle.0|upper }}</h3>
-          {% endfor %}
+        {% if turtle %}
+        {% if turtle == "all" %}
+          <img src="{% static 'turtle_power/img/leonardo.jpg' %}">
+          <img src="{% static 'turtle_power/img/michelangelo.jpg' %}">
+          <img src="{% static 'turtle_power/img/raphael.jpg' %}">
+          <img src="{% static 'turtle_power/img/donatello.jpg' %}">
+        {% elif turtle == "leonardo" %}
+          <img src="{% static 'turtle_power/img/leonardo.jpg' %}" class="{{ turtle }}" alt="{{ turtle }}">
+        {% elif turtle == "michelangelo" %}
+          <img src="{% static 'turtle_power/img/michelangelo.jpg' %}" class="{{ turtle }}" alt="{{ turtle }}">
+        {% elif turtle == "raphael" %}
+          <img src="{% static 'turtle_power/img/raphael.jpg' %}" class="{{ turtle }}" alt="{{ turtle }}">
+        {% elif turtle == "donatello" %}
+          <img src="{% static 'turtle_power/img/donatello.jpg' %}" class="{{ turtle }}" alt="{{ turtle }}">
+        {% elif turtle == "notapril" %}
+          <img src="{% static 'turtle_power/img/notapril.jpg' %}" class="{{ turtle }}" alt="{{ turtle }}">
+        {% endif %}
+        <h3 class="{{ turtle }}">{{ caption }}</h3>
         {% else %}
-          <h4>No ninjas here</h4>
+        <h4>No ninjas here</h4>
         {% endif %}
       </div>
     </div>

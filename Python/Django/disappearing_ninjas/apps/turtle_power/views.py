@@ -9,29 +9,24 @@ def index(request):
 
 def show_ninja(request, color):
     # if ninja button is pressed, no color
+    color = color.lower()
+    turtles = {
+        "blue": ['leonardo', 'turtle_power/img/leonardo.jpg'],
+        "orange": ['michelangelo', 'turtle_power/img/michelangelo.jpg'],
+        "red": ['raphael', 'turtle_power/img/raphael.jpg'],
+        "purple": ['donatello', 'turtle_power/img/donatello.jpg'],
+    }
+    context = {
+        "turtles": []
+    }
     if color == "":
         name = "all"
-        context = {
-            "turtle":name,
-        }
+        for turtle in turtles:
+            context['turtles'].append(turtles[turtle])
     # if color belongs to color group
-    elif color.lower() in ['blue', 'orange', 'red', 'purple']:
-        if color.lower() == "blue":
-            name = "leonardo"
-        if color.lower() == "orange":
-            name = "michelangelo"
-        if color.lower() == "red":
-            name = "raphael"
-        if color.lower() == "purple":
-            name = "donatello"
-        context = {
-            "turtle":name,
-            "caption":name.upper(),
-        }
-    # if anything outside of color group entered into url
+    elif color in turtles:
+        context['turtles'].append(turtles[color])
     else:
-        name = "notapril"
-        context = {
-            "turtle":name,
-        }
+        context['turtles'].append(['april', 'turtle_power/img/notapril.jpg'])
+    # if anything outside of color group entered into url
     return render(request, "turtle_power/index.html", context)
