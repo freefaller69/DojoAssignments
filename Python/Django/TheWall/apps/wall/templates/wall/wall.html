@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!-- Google fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=BioRhyme" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Fira+Sans" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Rock+Salt" rel="stylesheet">
+
+
+  <!-- css stylesheets -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  <link rel="stylesheet" href="{% static 'wall/css/style.css' %}">
+
+  <title>The Wall</title>
+</head>
+<body>
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">The Wall</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="navbar-form navbar-right">
+            <li><a href="/wall" class="button">The Wall</a></li>
+            <li><a href="/logout" class="button">Log out</a></li>
+          </ul>
+        </div><!--/.navbar-collapse -->
+      </div>
+    </nav>
+
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="jumbotron jumboText">
+      <div class="container textOverImg">
+        <h1>The Wall{% if "user" in request.session %} - Hello {{ request.session.user.first_name }} {% endif %}</h1>
+        <p></p>
+      </div>
+    </div>
+
+    <div class="container">
+
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed fringilla gravida metus nec cursus. Donec volutpat eu augue ac ullamcorper. Aliquam imperdiet accumsan ante, id porttitor tellus. Fusce aliquam, tellus vel vulputate molestie, leo dolor tempor mi, eu fermentum ligula elit eget sem. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sagittis ex eget faucibus euismod. Suspendisse lacinia magna odio, nec finibus velit sodales ac. Quisque hendrerit mattis nunc ut lacinia. Sed eget odio justo. In at scelerisque purus. Integer placerat placerat dui laoreet hendrerit. Donec porta eu leo vitae congue.</p>
+      <p>Sed ornare sit amet augue at dignissim. Morbi fringilla sagittis eros id interdum. Integer pulvinar vitae ante quis dictum. Cras at finibus mi, eget porttitor sapien. Duis convallis sapien et mauris feugiat eleifend. Nullam lacus nisi, tempor vel elementum eu, sagittis sed elit. Aliquam suscipit fermentum lorem a viverra. Praesent congue auctor eros sit amet mattis. Integer nisl justo, vehicula vitae nulla et, euismod fermentum ex. Mauris luctus elit at rutrum gravida.</p>
+      <p>Cras laoreet lectus nec mi varius, non accumsan quam vulputate. Nulla tempor accumsan nisi, vehicula auctor augue sodales a. Suspendisse eu sapien sit amet sem euismod eleifend vitae a lacus. Duis tincidunt laoreet libero id fermentum. Ut ultrices scelerisque justo, ac placerat turpis pulvinar a. Maecenas varius metus in feugiat bibendum. Interdum et malesuada fames ac ante ipsum primis in faucibus. Quisque porttitor elementum nunc ut consectetur. Phasellus vel lorem sagittis, vestibulum neque nec, aliquet orci. Proin dictum magna ac consequat congue. Cras mattis arcu vestibulum risus hendrerit, nec semper ante dictum. Mauris sed dolor ac metus lacinia finibus at vel velit. Nunc dapibus id dui ut lobortis. Quisque ut ipsum pharetra, lobortis arcu eget, elementum enim. Aliquam tellus turpis, accumsan vulputate metus sed, iaculis accumsan neque. Integer eget eros id velit sollicitudin dictum a ut libero.</p>
+
+    </div> <!-- /container -->
+
+
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js">
+  </script>
+  <!-- Include all compiled plugins (below), or include individual files as needed -->
+  <script src="{% static 'wall/js/bootstrap.min.js' %}"></script>
+  <script src="{% static 'wall/js/scripts.js' %}"></script>
+  <script>
+  // $(document).ready(function(){
+  //
+  //   $('.register').toggle();
+  //   $('h4').on("click", function() {
+  //     $('.login').toggle();
+  //     $('.register').toggle();
+  //   });
+  //
+  //
+  // });
+  </script>
+</body>
+</html>
