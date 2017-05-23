@@ -30,9 +30,13 @@ def all_users(request):
     }
     return render(request, "wall/allusers.html", context)
 
-def register(request):
+def entrance(request):
     if request.method == "POST":
-        response = User.objects.check_create(request.POST)
+        if request.POST["gate"] == "register":
+            response = User.objects.check_create(request.POST)
+        elif request.POST["gate"] == "login":
+            print "MADE IT THIS FAR"
+            response = User.objects.check_login(request.POST)
         if not response[0]:
             for error in response[1]:
                 messages.error(request, error[1])
@@ -43,23 +47,7 @@ def register(request):
             "first_name": response[1].first_name,
             "last_name": response[1].last_name,
             }
-            return redirect('wall:allusers')
-    return redirect('wall:index')
-
-def login(request):
-    if request.method == "POST":
-        response = User.objects.check_login(request.POST)
-        if not response[0]:
-            for error in response[1]:
-                messages.error(request, error[1])
-            return redirect('wall:index')
-        else:
-            request.session['user'] = {
-            "id": response[1].id,
-            "first_name": response[1].first_name,
-            "last_name": response[1].last_name,
-            }
-            return redirect('wall:wall')
+            return redirect('wall:all_users')
     return redirect('wall:index')
 
 def logout(request):

@@ -36,15 +36,15 @@
           <a class="navbar-brand" href="/wall">The Wall</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
-          <form action="login" method="POST" class="navbar-form navbar-right">
+          <form action="entrance" method="POST" class="navbar-form navbar-right">
             <div class="form-group">
-              <input type="text" name="login_email" placeholder="Email" class="form-control">
+              <input type="text" name="email" placeholder="Email" class="form-control">
             </div>
             <div class="form-group">
               {% csrf_token %}
-              <input type="password" name="login_pwd" placeholder="Password" class="form-control">
+              <input type="password" name="password" placeholder="Password" class="form-control">
             </div>
-            <button type="submit" class="btn btn-success">Sign in</button>
+            <button type="submit" name="gate" value="login" class="btn btn-success">Sign in</button>
           </form>
         </div><!--/.navbar-collapse -->
       </div>
@@ -55,8 +55,6 @@
       <div class="container textOverImg">
         <h1>The Wall</h1>
         <p>We don't need no education.  We don't need no thought control.</p>
-        <p>No dark sarcasm in the classroom.  Teacher leave those kids alone.</p>
-        <p></p>
       </div>
     </div>
     <div class="container">
@@ -65,8 +63,7 @@
       <p class="error">{{ message }}</p>
       {% endfor %}
       {% endif %}
-      <form action="register/" method="POST" class="form-signin">
-        {% csrf_token %}
+      <form action="entrance" method="POST" class="form-signin">
         <h2 class="form-signin-heading">New here?  Please register and join us.</h2>
         <label for="inputFirstName">First Name</label>
         <input type="text" name="firstName" placeholder="First Name" class="form-control" placeholder="Email address" autofocus>
@@ -75,10 +72,11 @@
         <label for="inputEmail">Email address</label>
         <input type="email" name="email" class="form-control" placeholder="Email address">
         <label for="inputPassword">Password</label>
-        <input type="password" name="new_pwd" class="form-control" placeholder="Password">
+        <input type="password" name="password" class="form-control" placeholder="Password">
         <label>Confirm Password:</label>
         <input type="password" name="pwdConfirm" class="form-control" placeholder="confirm password entry">
-        <button class="btn btn-lg btn-primary btn-block submit" type="submit">Submit</button>
+        {% csrf_token %}
+        <button class="btn btn-lg btn-primary btn-block submit" name="gate" value="register" type="submit">Submit</button>
       </form>
 
     </div> <!-- /container -->
@@ -90,17 +88,6 @@
   <!-- Include all compiled plugins (below), or include individual files as needed -->
   <script src="{% static 'wall/js/bootstrap.min.js' %}"></script>
   <script src="{% static 'wall/js/scripts.js' %}"></script>
-  <script>
-  // $(document).ready(function(){
-  //
-  //   $('.register').toggle();
-  //   $('h4').on("click", function() {
-  //     $('.login').toggle();
-  //     $('.register').toggle();
-  //   });
-  //
-  //
-  // });
-  </script>
+
 </body>
 </html>
