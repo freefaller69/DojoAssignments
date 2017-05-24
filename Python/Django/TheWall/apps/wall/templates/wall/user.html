@@ -33,12 +33,11 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="/">The Wall</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="navbar-form navbar-right">
-            <li><a href="/wall" class="button">The Wall</a></li>
-            <li><a href="/logout" class="button">Log out</a></li>
+            <li><a href="{% url 'wall:wall' %}" class="button">The Wall</a></li>
+            <li><a href="{% url 'wall:logout' %}" class="button">Log out</a></li>
           </ul>
         </div><!--/.navbar-collapse -->
       </div>
@@ -52,7 +51,7 @@
       </div>
     </div>
 
-    <div class="container">
+    <div id="user" class="container">
     {% if user %}
       <h3>Username</h3>
       <p>First Name: {{ user.first_name }}</p>
@@ -72,17 +71,6 @@
   <!-- Include all compiled plugins (below), or include individual files as needed -->
   <script src="{% static 'wall/js/bootstrap.min.js' %}"></script>
   <script src="{% static 'wall/js/scripts.js' %}"></script>
-  <script>
-  // $(document).ready(function(){
-  //
-  //   $('.register').toggle();
-  //   $('h4').on("click", function() {
-  //     $('.login').toggle();
-  //     $('.register').toggle();
-  //   });
-  //
-  //
-  // });
-  </script>
+
 </body>
 </html>

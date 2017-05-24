@@ -37,8 +37,8 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="navbar-form navbar-right">
-            <li><a href="/wall" class="button">The Wall</a></li>
-            <li><a href="/logout" class="button">Log out</a></li>
+            <li><a href="{% url 'wall:wall' %}" class="button">The Wall</a></li>
+            <li><a href="{% url 'wall:logout' %}" class="button">Log out</a></li>
           </ul>
         </div><!--/.navbar-collapse -->
       </div>

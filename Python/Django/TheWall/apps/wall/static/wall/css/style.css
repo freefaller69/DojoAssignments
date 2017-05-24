@@ -1,5 +1,10 @@
 body {
   font-family: "Raleway", "BioRhyme", "Fira Sans", sans-serif;
+  background-color: hsl(0, 1%, 98%);
+}
+
+h5 {
+  font-weight: bold;
 }
 
 .form-signin {
@@ -53,4 +58,29 @@ td, th{
 
 .error {
   color: #da1c1c;
+}
+
+.btn-block {
+  width: 80px;
+  margin: 5px 0;
+}
+
+#messages {
+  margin: 0 22%;
+  margin-top: 20px;;
+}
+
+#comments>ul {
+  list-style-type: none;
+  font-style: italic;
+}
+
+.separator {
+  border: 1px solid #777;
+  width: 600px;
+  margin-left: -3%;
+}
+
+#user {
+  margin: 0 30%;
 }

@@ -34,30 +34,84 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="/">The Wall</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="navbar-form navbar-right">
-            <li><a href="/wall" class="button">The Wall</a></li>
-            <li><a href="/logout" class="button">Log out</a></li>
+            <li><a href="{% url 'wall:wall' %}" class="button">The Wall</a></li>
+            <li><a href="{% url 'wall:logout' %}" class="button">Log out</a></li>
           </ul>
         </div><!--/.navbar-collapse -->
       </div>
     </nav>
 
     <!-- Main jumbotron for a primary marketing message or call to action -->
-    <div class="jumbotron jumboText">
+    <header class="jumbotron jumboText">
       <div class="container textOverImg">
         <h1>The Wall{% if "user" in request.session %} - Hello {{ request.session.user.first_name }} {% endif %}</h1>
         <p></p>
       </div>
-    </div>
+    </header>
 
-    <div class="container">
+    <div id="main" class="container">
 
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed fringilla gravida metus nec cursus. Donec volutpat eu augue ac ullamcorper. Aliquam imperdiet accumsan ante, id porttitor tellus. Fusce aliquam, tellus vel vulputate molestie, leo dolor tempor mi, eu fermentum ligula elit eget sem. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sagittis ex eget faucibus euismod. Suspendisse lacinia magna odio, nec finibus velit sodales ac. Quisque hendrerit mattis nunc ut lacinia. Sed eget odio justo. In at scelerisque purus. Integer placerat placerat dui laoreet hendrerit. Donec porta eu leo vitae congue.</p>
-      <p>Sed ornare sit amet augue at dignissim. Morbi fringilla sagittis eros id interdum. Integer pulvinar vitae ante quis dictum. Cras at finibus mi, eget porttitor sapien. Duis convallis sapien et mauris feugiat eleifend. Nullam lacus nisi, tempor vel elementum eu, sagittis sed elit. Aliquam suscipit fermentum lorem a viverra. Praesent congue auctor eros sit amet mattis. Integer nisl justo, vehicula vitae nulla et, euismod fermentum ex. Mauris luctus elit at rutrum gravida.</p>
-      <p>Cras laoreet lectus nec mi varius, non accumsan quam vulputate. Nulla tempor accumsan nisi, vehicula auctor augue sodales a. Suspendisse eu sapien sit amet sem euismod eleifend vitae a lacus. Duis tincidunt laoreet libero id fermentum. Ut ultrices scelerisque justo, ac placerat turpis pulvinar a. Maecenas varius metus in feugiat bibendum. Interdum et malesuada fames ac ante ipsum primis in faucibus. Quisque porttitor elementum nunc ut consectetur. Phasellus vel lorem sagittis, vestibulum neque nec, aliquet orci. Proin dictum magna ac consequat congue. Cras mattis arcu vestibulum risus hendrerit, nec semper ante dictum. Mauris sed dolor ac metus lacinia finibus at vel velit. Nunc dapibus id dui ut lobortis. Quisque ut ipsum pharetra, lobortis arcu eget, elementum enim. Aliquam tellus turpis, accumsan vulputate metus sed, iaculis accumsan neque. Integer eget eros id velit sollicitudin dictum a ut libero.</p>
+      <div id="post" class="row">
+        <div class="container col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <form action="post_message" method="POST" class="form-signin">
+            <label class="msg">Post a message
+              {% if messages %}
+              {% for message in messages%}
+              <p class="error">{{ message }}</p>
+              {% endfor %}
+              {% endif %}
+            </label>
+            <p class="error">{{ message }}</p>
+            <textarea rows="4" cols="90" name="message_input" class="message"></textarea>
+            <input type="hidden" name="user_id" value="{{ request.session.user.id }}">
+            {% csrf_token %}
+            <button class="btn btn-md btn-primary btn-block submit" name="wall_posts" value="message_submit" type="submit">Submit</button>
+        </form>
+        </div>
+      </div>
+      <div class="row">
+        <div id="messages" class="container col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          {% if user_messages %}
+          {% for msg in user_messages %}
+          <h5><a href="user/{{ msg.user_id.id }}">{{ msg.user_id.first_name }} {{ msg.user_id.last_name }}</a>  - {{ msg.created_at }}</h5>
+          <p class="msg">{{ msg.message }}</p>
+
+          <div id="comments" class="container toggle col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <ul>
+              {% if user_comments %}
+              {% for comment in user_comments %}
+              {% if msg.id == comment.message_id.id %}
+              <h5><a href="user/{{ comment.user_id.id }}">{{ comment.user_id.first_name }} {{ comment.user_id.last_name }}</a> - {{ comment.created_at }}</h5>
+              <li>{{ comment.comment }}</li>
+              {% endif %}
+              {% endfor %}
+              {% endif %}
+            </ul>
+            </div>
+            <div>
+              <h6 class="comment_label">Post a comment</h6>
+              <form class="comment_form" action="post_message" method="POST">
+
+                {% if messages %}
+                {% for message in messages%}
+                <p class="error">{{ message }}</p>
+                {% endfor %}
+                {% endif %}
+                <input type="hidden" name="user_id" value="{{ request.session.user.id }}">
+                <input type="hidden" name="message_id" value="{{ msg.id }}">
+                <textarea rows="1" cols="60" name="comment_input" class="comment"></textarea>
+                {% csrf_token %}
+                <button class="btn btn-sm btn-primary submit" name="wall_posts" value="comment_submit" type="submit">Submit</button>
+              </form>
+              <div class="separator"></div>
+              {% endfor %}
+              {% endif %}
+            </div>
+        </div>
+      </div>
 
     </div> <!-- /container -->
 
@@ -68,17 +122,6 @@
   <!-- Include all compiled plugins (below), or include individual files as needed -->
   <script src="{% static 'wall/js/bootstrap.min.js' %}"></script>
   <script src="{% static 'wall/js/scripts.js' %}"></script>
-  <script>
-  // $(document).ready(function(){
-  //
-  //   $('.register').toggle();
-  //   $('h4').on("click", function() {
-  //     $('.login').toggle();
-  //     $('.register').toggle();
-  //   });
-  //
-  //
-  // });
-  </script>
+
 </body>
 </html>

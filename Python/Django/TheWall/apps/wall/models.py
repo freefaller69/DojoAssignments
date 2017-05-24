@@ -57,14 +57,43 @@ class User(models.Model):
     def __str__(self):
         return 'ID: %s | Name: %s %s | Email: %s' % (self.id, self.first_name, self.last_name, self.email)
 
+class MessageDataManager(models.Manager):
+    def new_message_input(self, data):
+        errors= []
+        user_id = User.objects.get(id=data['user_id'])
+        if len(data['message_input']) < 2:
+            errors.append(['message', "Messages have a minimum length of two characters."])
+        if errors:
+            return [False, errors]
+        else:
+            newMessage = Message(message=data['message_input'], user_id=user_id)
+            newMessage.save()
+            return [True]
+
 class Message(models.Model):
     message = models.TextField(max_length=1000)
     user_id = models.ForeignKey(User)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+    objects = MessageDataManager()
+
     def __str__(self):
-        return self.message
+        return 'ID: %s | Message: %s | User_ID: %s | CreatedAt: %s' % (self.id, self.message, self.user_id, self.created_at)
+
+class CommentDataManager(models.Manager):
+    def new_comment_input(self, data):
+        errors= []
+        user_id = User.objects.get(id=data['user_id'])
+        message_id = Message.objects.get(id=data['message_id'])
+        if len(data['comment_input']) < 2:
+            errors.append(['comment', "Comments have a minimum length of two characters."])
+        if errors:
+            return [False, errors]
+        else:
+            newComment = Comment(comment=data['comment_input'], user_id=user_id, message_id=message_id)
+            newComment.save()
+            return [True]
 
 class Comment(models.Model):
     comment = models.TextField(max_length=1000)
@@ -72,6 +101,8 @@ class Comment(models.Model):
     user_id = models.ForeignKey(User)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    objects = CommentDataManager()
 
     def __str__(self):
         return self.comment

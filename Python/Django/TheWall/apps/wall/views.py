@@ -11,13 +11,23 @@ def index(request):
     return render(request, "wall/index.html")
 
 def wall(request):
-    return render(request, "wall/wall.html")
+    context = {
+        "user_messages": Message.objects.all().order_by('id').reverse(),
+        "user_comments": Comment.objects.all().order_by('id'),
+    }
+    return render(request, "wall/wall.html", context)
+
+def post_message(request):
+    if request.method == 'POST':
+        if request.POST["wall_posts"] == "message_submit":
+            response = Message.objects.new_message_input(request.POST)
+        if request.POST["wall_posts"] == "comment_submit":
+            response = Comment.objects.new_comment_input(request.POST)
+    return redirect('wall:wall')
 
 def user(request, id):
-    if request.session['user']['id'] != int(id):
-        print "NO MATCH!"
-    else:
-        print "CORRECT USER"
+    # if request.session['user']['id'] != int(id):
+    # else:
         # return redirect('wall:user/'+id)
     context = {
         "user": User.objects.get(id=id),
@@ -35,7 +45,6 @@ def entrance(request):
         if request.POST["gate"] == "register":
             response = User.objects.check_create(request.POST)
         elif request.POST["gate"] == "login":
-            print "MADE IT THIS FAR"
             response = User.objects.check_login(request.POST)
         if not response[0]:
             for error in response[1]:
