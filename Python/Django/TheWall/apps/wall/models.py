@@ -32,6 +32,43 @@ class UserDataManager(models.Manager):
             newUser.save()
             return [True, newUser]
 
+    def check_update(self, data, id):
+        errors = []
+        user_id = User.objects.get(id=id)
+        if data['firstName'] != "":
+            User.objects.filter(id=id).update(first_name=data['firstName'])
+        if data['lastName'] != "":
+            User.objects.filter(id=id).update(last_name=data['lastName'])
+        if data['email'] != "":
+            if not re.match(EMAILREG, data['email']):
+                errors.append(['email', "Email must be a valid address."])
+            mail_check = User.objects.filter(email=data['email'])
+            if mail_check:
+                errors.append(['mail_check', "Invalid email, please use alternate information."])
+                return [False, errors]
+            if errors:
+                return [False, errors]
+            User.objects.filter(id=id).update(email=data['email'])
+        return [True]
+
+    def check_password(self, data, id):
+        errors = []
+        user_id = User.objects.get(id=id)
+        if data['password'] != "":
+            if not re.match(PASSWORD_REGEX, data['password']):
+                errors.append(['password', "Password must be at least 8 characters in length and  include 1 uppercase letter, 1 lowercase letter, and 1 number."])
+            if (data['password'] != data['pwdConfirm']):
+                errors.append(['pwdConfirm', "Password confirmation does not match.  Please reenter."])
+            if errors:
+                return [False, errors]
+            hashed_pass = bcrypt.hashpw(data['password'].encode(), bcrypt.gensalt())
+            pw_hash = hashed_pass
+            print "x"*100
+            print pw_hash
+            print "x"*100
+            User.objects.filter(id=id).update(pw_hash=pw_hash)
+        return [True]
+
     def check_login(self, data):
         errors= []
         current_user = User.objects.filter(email=data['email'])
@@ -55,12 +92,12 @@ class User(models.Model):
     objects = UserDataManager()
 
     def __str__(self):
-        return 'ID: %s | Name: %s %s | Email: %s' % (self.id, self.first_name, self.last_name, self.email)
+        return 'ID: %s | Name: %s %s | Email: %s | Created: %s | Updated: %s' % (self.id, self.first_name, self.last_name, self.email, self.created_at, self.updated_at)
 
 class MessageDataManager(models.Manager):
-    def new_message_input(self, data):
+    def new_message_input(self, data, id):
         errors= []
-        user_id = User.objects.get(id=data['user_id'])
+        user_id = User.objects.get(id=id)
         if len(data['message_input']) < 2:
             errors.append(['message', "Messages have a minimum length of two characters."])
         if errors:
@@ -72,7 +109,7 @@ class MessageDataManager(models.Manager):
 
 class Message(models.Model):
     message = models.TextField(max_length=1000)
-    user_id = models.ForeignKey(User)
+    user_id = models.ForeignKey(User, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -82,9 +119,9 @@ class Message(models.Model):
         return 'ID: %s | Message: %s | User_ID: %s | CreatedAt: %s' % (self.id, self.message, self.user_id, self.created_at)
 
 class CommentDataManager(models.Manager):
-    def new_comment_input(self, data):
+    def new_comment_input(self, data, id):
         errors= []
-        user_id = User.objects.get(id=data['user_id'])
+        user_id = User.objects.get(id=id)
         message_id = Message.objects.get(id=data['message_id'])
         if len(data['comment_input']) < 2:
             errors.append(['comment', "Comments have a minimum length of two characters."])
@@ -97,8 +134,8 @@ class CommentDataManager(models.Manager):
 
 class Comment(models.Model):
     comment = models.TextField(max_length=1000)
-    message_id = models.ForeignKey(Message)
-    user_id = models.ForeignKey(User)
+    message_id = models.ForeignKey(Message, on_delete=models.CASCADE)
+    user_id = models.ForeignKey(User, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -106,3 +143,4 @@ class Comment(models.Model):
 
     def __str__(self):
         return self.comment
+        return 'ID: %s | Comment: %s | User_ID: %s | Message_ID: %s | CreatedAt: %s' % (self.id, self.comment, self.user_id, self.message_id, self.created_at)

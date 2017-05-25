@@ -60,6 +60,15 @@ td, th{
   color: #da1c1c;
 }
 
+#user_menu>ul {
+  list-style-type: none;
+}
+
+#user_menu>ul>li {
+  margin: 0;
+  display: inline-block;
+}
+
 .btn-block {
   width: 80px;
   margin: 5px 0;
@@ -82,5 +91,9 @@ td, th{
 }
 
 #user {
-  margin: 0 30%;
+  margin-left: 20%;
+}
+
+#user_options {
+  margin-left: -150px;
 }

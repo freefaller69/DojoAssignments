@@ -20,15 +20,12 @@ def wall(request):
 def post_message(request):
     if request.method == 'POST':
         if request.POST["wall_posts"] == "message_submit":
-            response = Message.objects.new_message_input(request.POST)
+            response = Message.objects.new_message_input(request.POST, request.session['user']['id'])
         if request.POST["wall_posts"] == "comment_submit":
-            response = Comment.objects.new_comment_input(request.POST)
+            response = Comment.objects.new_comment_input(request.POST, request.session['user']['id'])
     return redirect('wall:wall')
 
 def user(request, id):
-    # if request.session['user']['id'] != int(id):
-    # else:
-        # return redirect('wall:user/'+id)
     context = {
         "user": User.objects.get(id=id),
     }
@@ -58,6 +55,24 @@ def entrance(request):
             }
             return redirect('wall:all_users')
     return redirect('wall:index')
+
+def user_update(request):
+    user_id = str(request.session['user']['id'])
+    if request.method == "POST":
+        if request.POST["update_option"] == "profile":
+            response = User.objects.check_update(request.POST, request.session['user']['id'])
+        if request.POST["update_option"] == "password":
+            response = User.objects.check_password(request.POST, request.session['user']['id'])
+        if not response[0]:
+            for error in response[1]:
+                messages.error(request, error[1])
+        return redirect('/user/'+user_id)
+    return redirect('/user/'+user_id)
+
+def user_delete(request):
+    user_id = request.session['user']['id']
+    User.objects.filter(id=user_id).delete()
+    return redirect('wall:logout')
 
 def logout(request):
     request.session.clear()

@@ -66,7 +66,6 @@
             </label>
             <p class="error">{{ message }}</p>
             <textarea rows="4" cols="90" name="message_input" class="message"></textarea>
-            <input type="hidden" name="user_id" value="{{ request.session.user.id }}">
             {% csrf_token %}
             <button class="btn btn-md btn-primary btn-block submit" name="wall_posts" value="message_submit" type="submit">Submit</button>
         </form>
@@ -100,7 +99,6 @@
                 <p class="error">{{ message }}</p>
                 {% endfor %}
                 {% endif %}
-                <input type="hidden" name="user_id" value="{{ request.session.user.id }}">
                 <input type="hidden" name="message_id" value="{{ msg.id }}">
                 <textarea rows="1" cols="60" name="comment_input" class="comment"></textarea>
                 {% csrf_token %}

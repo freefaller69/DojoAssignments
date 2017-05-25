@@ -47,13 +47,12 @@
     <!-- Main jumbotron for a primary marketing message or call to action -->
     <div class="jumbotron jumboText">
       <div class="container textOverImg">
-        <h1>All Users</h1>
+        <h1>All Users{% if "user" in request.session %} - Hello {{ request.session.user.first_name }}!</h1>{% endif %}
 
       </div>
     </div>
 
     <div class="container">
-      {% if "user" in request.session %}<h4>Hello {{ request.session.user.first_name }}!</h4> {% endif %}
       <table>
         <thead>
           <th>ID</th>
