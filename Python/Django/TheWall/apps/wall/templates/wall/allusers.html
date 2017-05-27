@@ -69,7 +69,7 @@
           <td>{{ user.last_name }}</td>
           <td>{{ user.email }}</td>
           <td>{{ user.created_at }}</td>
-          <td><a href="/user/{{ user.id }}">Show</a></td>
+          <td><a href="/{{ user.id }}">Show</a></td>
         </tr>
 			{% empty %}
 				<p>No users found.</p>

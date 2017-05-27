@@ -37,6 +37,7 @@ class UserDataManager(models.Manager):
         user_id = User.objects.get(id=id)
         if data['firstName'] != "":
             User.objects.filter(id=id).update(first_name=data['firstName'])
+            user_id.first_name = data['firstName']
         if data['lastName'] != "":
             User.objects.filter(id=id).update(last_name=data['lastName'])
         if data['email'] != "":

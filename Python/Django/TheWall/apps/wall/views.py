@@ -26,10 +26,13 @@ def post_message(request):
     return redirect('wall:wall')
 
 def user(request, id):
-    context = {
-        "user": User.objects.get(id=id),
-    }
-    return render(request, "wall/user.html", context)
+    if id:
+        context = {
+            "user": User.objects.get(id=id),
+        }
+        return render(request, "wall/user.html", context)
+    else:
+        return render(request, "wall/allusers.html", context)
 
 def all_users(request):
     context = {

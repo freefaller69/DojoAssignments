@@ -11,6 +11,6 @@ urlpatterns = [
     url(r'^user_delete$', views.user_delete, name='user_delete'),
     url(r'^wall$', views.wall, name='wall'),
     url(r'^post_message$', views.post_message, name='post_message'),
-    url(r'^user/(?P<id>\d*)$', views.user, name='user'),
+    url(r'^(?P<id>\d+)$', views.user, name='user'),
     url(r'^all_users$', views.all_users, name="all_users"),
 ]

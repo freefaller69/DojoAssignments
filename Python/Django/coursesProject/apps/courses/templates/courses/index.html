@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  <title>Your page title here :)</title>
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  {% load staticfiles %}
+  <link rel="stylesheet" href="{% static 'courses/css/normalize.css' %}">
+  <link rel="stylesheet" href="{% static 'courses/css/skeleton.css' %}">
+  <link rel="stylesheet" href="{% static 'courses/css/style.css' %}">
+
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="images/favicon.png">
+
+</head>
+<body>
+
+  <!-- Primary Page Layout
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <div class="container">
+    <div class="row">
+      <div class="two-thirds column">
+        <h4>Add a new course</h4>
+        <form action="add_course" method="POST">
+          <label for="courseName">Name:</label>
+          <input type="text" name="name" placeholder="Course Name">
+          <label for="courseDescription">Description:</label>
+          <textarea name="description" rows="4" cols="80"></textarea>
+          {% csrf_token %}
+          <button type="submit" class="button-primary">Add</button>
+        </form>
+        {% if messages %}
+        {% for message in messages%}
+        <p class="error">{{ message }}</p>
+        {% endfor %}
+        {% endif %}
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="two-thirds column">
+        <h4>Courses</h4>
+        <table>
+          <thead>
+            <th>Course Name</th>
+            <th>Description</th>
+            <th>Date Added</th>
+            <th>Actions</th>
+          </thead>
+  			{% for course in courses %}
+          <tr>
+    				<td>{{ course.name }}</td>
+            <td>{{ course.description }}</td>
+            <td>{{ course.created_at }}</td>
+            <td><a href="/destroy/{{ course.id }}">Remove</a></td>
+          </tr>
+  			{% empty %}
+  				<p>No courses found.</p>
+  			{% endfor %}
+        </table>
+      </div>
+    </div>
+  </div>
+
+<!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+</body>
+</html>
