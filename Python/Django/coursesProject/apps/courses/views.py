@@ -25,7 +25,6 @@ def destroy(request, id):
     context = {
         "course": Course.objects.get(id=id),
     }
-    print context
     return render(request, 'courses/destroy.html', context)
 
 def course_delete(request, id):

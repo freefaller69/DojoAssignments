@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  <title>Your page title here :)</title>
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  {% load staticfiles %}
+  <link rel="stylesheet" href="{% static 'validator/css/normalize.css' %}">
+  <link rel="stylesheet" href="{% static 'validator/css/skeleton.css' %}">
+  <link rel="stylesheet" href="{% static 'validator/css/style.css' %}">
+
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="images/favicon.png">
+
+</head>
+<body>
+
+  <!-- Primary Page Layout
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <div class="container">
+    <div class="row">
+      <div class="two-thirds column">
+        {% if user %}
+        <h4>Usernames entered:</h4>
+        <table>
+          {% for user in users %}
+          <tr>
+    				<td>{{ user.username }}</td>
+            <td>{{ user.created_at }}</td>
+            <td><a href="/destroy/{{ user.id }}">Remove</a></td>
+          </tr>
+          {% endfor %}
+        </table>
+        <a href="/">Home</a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+<!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+</body>
+</html>

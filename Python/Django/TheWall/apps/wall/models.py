@@ -34,22 +34,21 @@ class UserDataManager(models.Manager):
 
     def check_update(self, data, id):
         errors = []
-        user_id = User.objects.get(id=id)
+        current_user = User.objects.get(id=id)
         if data['firstName'] != "":
-            User.objects.filter(id=id).update(first_name=data['firstName'])
-            user_id.first_name = data['firstName']
+            current_user.first_name = data['firstName']
         if data['lastName'] != "":
-            User.objects.filter(id=id).update(last_name=data['lastName'])
+            current_user.last_name = data['lastName']
         if data['email'] != "":
-            if not re.match(EMAILREG, data['email']):
-                errors.append(['email', "Email must be a valid address."])
+            current_user.email = data['email']
             mail_check = User.objects.filter(email=data['email'])
             if mail_check:
                 errors.append(['mail_check', "Invalid email, please use alternate information."])
-                return [False, errors]
-            if errors:
-                return [False, errors]
-            User.objects.filter(id=id).update(email=data['email'])
+            elif not re.match(EMAILREG, data['email']):
+                errors.append(['email', "Email must be a valid address."])
+        if errors:
+            return [False, errors]
+        current_user.save()
         return [True]
 
     def check_password(self, data, id):
@@ -62,11 +61,7 @@ class UserDataManager(models.Manager):
                 errors.append(['pwdConfirm', "Password confirmation does not match.  Please reenter."])
             if errors:
                 return [False, errors]
-            hashed_pass = bcrypt.hashpw(data['password'].encode(), bcrypt.gensalt())
-            pw_hash = hashed_pass
-            print "x"*100
-            print pw_hash
-            print "x"*100
+            pw_hash = bcrypt.hashpw(data['password'].encode(), bcrypt.gensalt())
             User.objects.filter(id=id).update(pw_hash=pw_hash)
         return [True]
 

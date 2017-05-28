@@ -15,14 +15,7 @@ class CourseDataManager(models.Manager):
             return [False, errors]
         else:
             newCourse = Course(name=data['name'], description=data['description'])
-            print "x"*100
-            print "New Course"
-            print newCourse
-            print "x"*100
             newCourse.save()
-            print "x"*100
-            print "completed check"
-            print "x"*100
             return [True, newCourse]
 
 class Course(models.Model):

@@ -1,0 +1,17 @@
+button {
+  display: block;
+}
+
+input {
+  width: 500px;
+}
+
+.error {
+  color: red;
+  font-weight: bold;
+}
+
+.warning {
+  background-color: red;
+  color: #fff;
+}

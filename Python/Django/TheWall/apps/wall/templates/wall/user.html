@@ -21,6 +21,14 @@
     <![endif]-->
   <link rel="stylesheet" href="{% static 'wall/css/style.css' %}">
 
+  <!-- scripts -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js">
+  </script>
+  <!-- Include all compiled plugins (below), or include individual files as needed -->
+  <script src="{% static 'wall/js/bootstrap.min.js' %}"></script>
+  <script src="{% static 'wall/js/scripts.js' %}"></script>
+
+
   <title>The Wall</title>
 </head>
 <body>
@@ -72,6 +80,11 @@
   {% else %}
       <p>No users found.</p>
   {% endif %}
+  {% if messages %}
+  {% for message in messages%}
+  <p class="error">{{ message }}</p>
+  {% endfor %}
+  {% endif %}
   </div> <!-- /container -->
   {% if user.id == request.session.user.id %}
   <div id="user_options" class="container col-lg-4 col-md-6 col-sm-12 col-xs-12">
@@ -84,11 +97,6 @@
       <input type="text" name="lastName" placeholder="Last Name" class="form-control" placeholder="Email address">
       <label for="inputEmail">Email address</label>
       <input type="email" name="email" class="form-control" placeholder="Email address">
-      {% if messages %}
-      {% for message in messages%}
-      <p class="error">{{ message }}</p>
-      {% endfor %}
-      {% endif %}
       {% csrf_token %}
       <button class="btn btn-md btn-primary btn-block submit" name="update_option" value="profile" type="submit">Submit</button>
     </form>
@@ -118,11 +126,6 @@
   {% endif %}
 
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js">
-  </script>
-  <!-- Include all compiled plugins (below), or include individual files as needed -->
-  <script src="{% static 'wall/js/bootstrap.min.js' %}"></script>
-  <script src="{% static 'wall/js/scripts.js' %}"></script>
 
   <script>
     $(document).ready(function(){

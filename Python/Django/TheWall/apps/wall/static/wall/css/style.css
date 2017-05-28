@@ -1,6 +1,10 @@
 body {
   font-family: "Raleway", "BioRhyme", "Fira Sans", sans-serif;
   background-color: hsl(0, 1%, 98%);
+  background-image: url("../img/bcgd.png");
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
 }
 
 h5 {

@@ -26,13 +26,14 @@ def post_message(request):
     return redirect('wall:wall')
 
 def user(request, id):
-    if id:
+    user_check = User.objects.filter(id=id)
+    if user_check:
         context = {
             "user": User.objects.get(id=id),
         }
         return render(request, "wall/user.html", context)
     else:
-        return render(request, "wall/allusers.html", context)
+        return redirect('wall:all_users')
 
 def all_users(request):
     context = {
@@ -56,7 +57,7 @@ def entrance(request):
             "first_name": response[1].first_name,
             "last_name": response[1].last_name,
             }
-            return redirect('wall:all_users')
+            return redirect('wall:wall')
     return redirect('wall:index')
 
 def user_update(request):
@@ -69,8 +70,8 @@ def user_update(request):
         if not response[0]:
             for error in response[1]:
                 messages.error(request, error[1])
-        return redirect('/user/'+user_id)
-    return redirect('/user/'+user_id)
+            return redirect('/'+user_id)
+    return redirect('/'+user_id)
 
 def user_delete(request):
     user_id = request.session['user']['id']
