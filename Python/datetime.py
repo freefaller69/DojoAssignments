@@ -32,3 +32,9 @@ if afd < today:
 
 time_to_afd = abs(afd - today)
 print time_to_afd.days, "days until next April Fool's Day"
+
+
+dt_UTC = datetime.datetime.now(tz=pytz.UTC)
+dt_mtn = dt .astimezone(pytz.timezone('US/Mountain'))
+
+dt_mtn = datetime.datetime.now(tz=pytz.timezone('US/Mountain'))

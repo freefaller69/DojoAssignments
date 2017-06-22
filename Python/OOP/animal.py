@@ -3,12 +3,15 @@ class Animal(object):
         print "New animal created"
         self.name = name
         self.health = 100
+
     def walk(self):
         self.health -= 1
         return self
+
     def run(self):
         self.health -= 5
         return self
+
     def displayHealth(self):
         print self.name, self.health
         return self.name, self.health
@@ -22,6 +25,7 @@ class Dog(Animal):
         super(Dog, self).__init__(name)
         print "Dog Created"
         self.health = 150
+
     def pet(self):
         self.health += 5
         return self
@@ -35,9 +39,11 @@ class Dragon(Animal):
         super(Dragon, self).__init__(name)
         print "Dragon Created"
         self.health = 170
+
     def fly(self):
         self.health -= 10
         return self
+
     def displayHealth(self):
         print "This is a dragon!"
         super(Dragon, self).displayHealth()

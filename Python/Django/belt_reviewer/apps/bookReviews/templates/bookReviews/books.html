@@ -1,0 +1,37 @@
+{% extends "bookReviews/base.html" %}
+  {% block body_block %}
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div id="leftCol" class="container col-sm-6">
+      <div id="bookReviews">
+      <h3>Recent Book Reviews:</h3>
+          {% if books %}
+          {% for book in books %}
+        <div class="review">
+          <h5 class="bookTitle"><a href="{% url 'bookReviews:book'  book.id %}">{{ book.title }}</a></h5>
+          {% if reviews %}
+          {% for review in reviews %}
+          {% if review.book_id.id == book.id %}
+          <p class="rating">Rating: {{ review.rating }} stars</p>
+          <p class="review">{{ review.user_id.first_name }} says: {{ review.review }}</p>
+          {% endif %}
+          {% endfor %}
+          {% endif %}
+        </div>
+        {% endfor %}
+        {% endif %}
+      </div>
+    </div> <!-- /container -->
+    <div id="rightCol" class="container col-sm-6">
+      <h3>Other Books with Reviews:</h3>
+      <div id="reviewsList">
+        {% if books %}
+        <ul>
+          {% for book in books %}
+          <li class="listTitle"><a href="{% url 'bookReviews:book'  book.id %}">{{ book.title }}</a></li>
+          {% endfor %}
+        </ul>
+        {% endif %}
+      </div>
+
+    </div> <!-- /container -->
+  {% endblock %}

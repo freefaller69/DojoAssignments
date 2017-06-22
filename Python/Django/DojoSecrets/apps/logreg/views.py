@@ -23,6 +23,7 @@ def entrance(request):
             "first_name": response[1].first_name,
             "last_name": response[1].last_name,
             }
+            current_user = response[1].id
             return redirect('secrets:secrets')
     return redirect('secrets:index')
 

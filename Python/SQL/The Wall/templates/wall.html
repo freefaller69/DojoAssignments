@@ -37,7 +37,7 @@
         <h3>CodingDojo Wall</h3>
       </div>
       <div class="welcome seven columns">
-        <h5 class="greeting">Welcome <a href="/user/user_id">{{session['user']['first_name']}}</a></h5>
+        <h5 class="greeting">Welcome <a href="/user/{{ session['user']['id'] }}">{{session['user']['first_name']}}</a></h5>
         <a href="/logout" class="button">Log out</a>
       </div>
     </header>
@@ -64,7 +64,7 @@
           {% for msg in user_messages %}
           <h6>{{ msg['first_name'] }} {{ msg['last_name'] }} - <span class="timestamp">{{ msg['created_at'].strftime('%B %d, %Y, %I:%M %p') }}</span></h6>
             <p class="msg">{{ msg['message'] }} <a href="#"  class="delete_msg">Delete</a></p>
-            
+
             <div id="comments">
               <ul>
               {% if user_comments %}

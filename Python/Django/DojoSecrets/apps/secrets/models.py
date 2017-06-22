@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
+from django.contrib.sessions.models import Session
 from django.db import models
 from django.utils import timezone
 from ..logreg.models import UserDB
@@ -26,9 +27,20 @@ class SecretDataManager(models.Manager):
 
 class Secret(models.Model):
     secret = models.TextField(max_length=1000)
-    user_id = models.ForeignKey('logreg.UserDB', on_delete=models.CASCADE)
+    user_id = models.ForeignKey('logreg.UserDB', related_name='secret_owner', on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    def get_like_users(self):
+        return UserDB.objects.filter(user_likes__secret_id=self).count()
+
+    def likes_count(self):
+        current_user = self.user_id
+        print"x"*100
+        print self.user_id
+        print"x"*100
+        return Like.objects.filter(secret_id=self).filter(user_id=current_user).count()
+
 
     objects = SecretDataManager()
 
@@ -38,9 +50,6 @@ class Secret(models.Model):
 class LikeManager(models.Manager):
     def like_secret(self, user_id, secret_id):
         Like.objects.create(user_id=UserDB.objects.get(id=user_id), secret_id=Secret.objects.get(id=secret_id))
-
-    def get_likes(self):
-        return Likes.objects.all()
 
 class Like(models.Model):
     secret_id = models.ForeignKey(Secret, related_name='secret_likes', on_delete=models.CASCADE)

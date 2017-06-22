@@ -11,8 +11,6 @@ bcrypt = Bcrypt(app)
 mysql = MySQLConnector(app,'userssecuredb')
 app.secret_key = 'AHighlySecureSecret'
 
-user_id = ""
-
 @app.route('/', methods=['GET'])
 def index():
     return render_template('index.html')
@@ -22,9 +20,9 @@ def register():
     # Form Validations
     # First name and last name validations
     if not NAME_REGEX.match(request.form['fName']):
-        flash("First name entry has non-alphabet characters.", 'registration_error')
+        flash("First name entry invalid.", 'registration_error')
     if not NAME_REGEX.match(request.form['lName']):
-        flash("Last name entry has non-alphabet characters.", 'registration_error')
+        flash("Last name entry invalid.", 'registration_error')
     if not EMAIL_REGEX.match(request.form['email']):
         flash("Invalid email address.", 'registration_error')
     # Password validation
@@ -58,8 +56,6 @@ def register():
             'last_name': request.form['lName'],
             'email': request.form['email'],
         }
-        global user_id
-        user_id = session['user']['id']
         flash("Registration successful", 'success')
         return redirect('/wall')
     else:
@@ -78,13 +74,11 @@ def login():
     if user and bcrypt.check_password_hash(user[0]['pw_hash'], password):
         session['user'] = {
             "LoggedIn": True,
-            "id": unicode(user[0]['id']),
+            "id": str(user[0]['id']),
             "first_name": user[0]['first_name'],
             "last_name": user[0]['last_name'],
             "email": user[0]['email'],
         }
-        global user_id
-        user_id = session['user']['id']
         return redirect('/wall')
     else:
         flash("You shall not pass!!!", 'login_error')
@@ -96,9 +90,9 @@ def showUser(id):
     if not session:
         return redirect('/')
     # if user in session, url user edits return user to their own user page
-    if unicode(session['user']['id']) != id:
-        return redirect('/user/'+user_id)
-    return render_template('user.html', user=user_id)
+    if session['user']['id'] != id:
+        return redirect('/user/'+id)
+    return render_template('user.html')
 
 @app.route('/edit/<id>')
 def edit(id):
@@ -106,9 +100,9 @@ def edit(id):
     if not session:
         return redirect('/')
     # if user in session, url user edits return user to their own user page
-    if unicode(session['user']['id']) != id:
-        return redirect('/edit/'+user_id)
-    return render_template('edit.html', user=user_id)
+    if session['user']['id'] != id:
+        return redirect('/edit/'+session['user']['id'])
+    return render_template('edit.html')
 
 @app.route('/update', methods=['POST'])
 def update():
@@ -116,7 +110,7 @@ def update():
         'first_name': request.form['fName'],
         'last_name': request.form['lName'],
         'email': request.form['email'],
-        'id': user_id
+        'id': session['user']['id']
     }
     # Form Validations
     # First name and last name validations
@@ -129,7 +123,7 @@ def update():
     # Password validation
     # If errors, flash message(s) and return to registration
     if "_flashes" in session:
-        return redirect('/edit/'+user_id)
+        return redirect('/edit/'+session['user']['id'])
 
     user_update_query = "UPDATE users SET first_name = :first_name, last_name = :last_name, email = :email WHERE id = :id"
     mysql.query_db(user_update_query, user_update_data)
@@ -140,14 +134,14 @@ def update():
         "id": session['user']['id']
     }
     flash ("User successfully updated", 'success')
-    return render_template('user.html', user=user_id)
+    return render_template('user.html')
 
 
 @app.route('/confirm_delete')
 def confirm_delete():
     flash("Confirm deletion", 'confirm_delete')
     if "_flashes" in session:
-        return redirect('/user/'+user_id)
+        return redirect('/user/'+session['user']['id'])
 
 @app.route('/user/delete/<id>', methods=['POST'])
 def delete(id):
@@ -157,26 +151,27 @@ def delete(id):
     }
     mysql.query_db(delete_query, delete_data)
     flash("User deleted.")
-    return redirect('/')
+    return redirect('/logout')
 
 @app.route('/wall')
 def theWall():
-    message_query = "SELECT messages.id as msg_id, message, messages.created_at, message_id, users.first_name, users.last_name FROM messages JOIN users on users.id = user_id LEFT JOIN comments ON messages.id = message_id GROUP BY message_id ORDER BY messages.created_at DESC"
+    print session['user']['id']
+    message_query = "SELECT messages.id as msg_id, message, messages.created_at, users.first_name, users.last_name FROM messages JOIN users on users.id = user_id ORDER BY messages.created_at DESC"
 
     user_messages = mysql.query_db(message_query)
 
     user_comment_query = "SELECT user_comment, comments.created_at, users.first_name, users.last_name, message_id FROM comments JOIN users ON users.id = user_id ORDER BY comments.created_at"
     user_comments = mysql.query_db(user_comment_query)
-    if len(user_messages) == 0:
-        return render_template('/wall.html')
-    else:
-        return render_template('/wall.html', user_messages=user_messages, user_comments=user_comments)
+    # if len(user_messages) == 0:
+    #     return render_template('/wall.html')
+    # else:
+    return render_template('/wall.html', user_messages=user_messages, user_comments=user_comments)
 
 @app.route('/wall/message', methods=['POST'])
 def post_message():
     new_message_data = {
         'message': request.form['message'],
-        'user_id': user_id
+        'user_id': session['user']['id']
     }
     if len(new_message_data['message']) < 2:
         flash("Minimum message length is 2 characters.  Hi!  Please resubmit.", 'message_error')
@@ -189,7 +184,7 @@ def post_message():
 def post_comment(msg_id):
     new_comment_data = {
         'comment': request.form['comment'],
-        'user_id': user_id,
+        'user_id': session['user']['id'],
         'message_id': msg_id
     }
     if len(new_comment_data['comment']) > 1:
@@ -203,16 +198,9 @@ def post_comment(msg_id):
 #     if "_flashes" in session:
 #         return redirect('/wall')
 
-@app.route('/allusers')
-def allusers():
-    query_all = ('SELECT * FROM users')
-    all_users = mysql.query_db(query_all)
-    return render_template('allusers.html', all_users=all_users)
-
 @app.route('/logout')
 def logout():
     session.clear()
-    print "User ID:",user_id
     return redirect('/')
 
 app.run(debug=True, port=8888)

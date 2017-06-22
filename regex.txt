@@ -1,0 +1,7 @@
+/^(?=.*\d)(?=.*[a-z)(?=.*[\W_]).{8,}$/i
+PASSWORD_REGEX = re.compile(r'^(?=.*\d)(?=.*[a-z)(?=.*[\W_]).{8,}$')
+Password at least 8 characters, at least 1 letter, 1 number, and one special character
+
+/<.+?>/g
+html tag capture
+

@@ -1,0 +1,33 @@
+body {
+  padding: 5%;
+  font-size: 1.7em;
+}
+
+h1 {
+  font-weight: bold;
+}
+
+button {
+  color: #fff;
+  border: 2px solid #000;
+  display: block;
+  float: right;
+  clear: both;
+  box-shadow: 7px 7px 5px #888888;
+}
+
+#epic {
+  background-color: #085394;
+  padding: 50px;
+  font-size: 2em;
+  line-height: 0.25em;
+  border-radius: 25px;
+
+}
+
+#reset {
+  background-color: #cf2a27;
+  margin-top: 25px;
+
+
+}

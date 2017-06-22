@@ -7,9 +7,6 @@ import re
 EMAILREG = re.compile(r'^[a-zA-Z0-9\.\+_-]+@[a-zA-Z0-9\._-]+\.[a-zA-Z]*$')
 
 # Create your views here.
-def index(request):
-    return render(request, "logreg/index.html")
-
 def entrance(request):
     if request.method == "POST":
         if request.POST["gate"] == "register":
@@ -19,31 +16,16 @@ def entrance(request):
         if not response[0]:
             for error in response[1]:
                 messages.error(request, error[1])
-            return redirect('logreg:index')
+            return redirect('secrets:index')
         else:
             request.session['user'] = {
             "id": response[1].id,
             "first_name": response[1].first_name,
             "last_name": response[1].last_name,
             }
-            return redirect('logreg:all_users')
-    return redirect('logreg:index')
-
-def user(request, id):
-    user_check = UserDB.objects.filter(id=id)
-    if user_check:
-        context = {
-            "user": UserDB.objects.get(id=id),
-        }
-        return render(request, "logreg/user.html", context)
-    else:
-        return redirect('logreg:all_users')
-
-def all_users(request):
-    context = {
-        "all": UserDB.objects.all(),
-    }
-    return render(request, "logreg/allusers.html", context)
+            current_user = response[1].id
+            return redirect('secrets:secrets')
+    return redirect('secrets:index')
 
 def user_update(request):
     user_id = str(request.session['user']['id'])
@@ -65,4 +47,4 @@ def user_delete(request):
 
 def logout(request):
     request.session.clear()
-    return redirect('logreg:index')
+    return redirect('secrets:index')
