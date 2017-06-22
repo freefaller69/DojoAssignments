@@ -32,11 +32,11 @@
       $('#reset').on('click', function(){
         socket.emit("reset_count")
       });
-      socket.on("new_count", function(data){
-        console.log(data.response);
-        $('#epic_count').html(data.response);
-      })
+      socket.on("new_count", function(count){
+        $('#epic_count').html(count);
+      });
 
+      socket.emit("userJoin");
     });
   </script>
 

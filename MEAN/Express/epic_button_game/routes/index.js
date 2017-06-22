@@ -8,13 +8,19 @@ module.exports = function Route(app, server){
   // listen to connection from client
   io.sockets.on('connection', function(socket){
     // events for server to listen for
-    socket.on("epic_click", function(data){
-      count++;
-    io.emit("new_count", {response: count});
+    socket.on("epic_click", function(){
+      countUpdate(++count);
     });
-    socket.on("reset_count", function(data){
-      count = 0;
-    io.emit("new_count", {response: count});
+    socket.on("reset_count", function(){
+      countUpdate(count = 0);
     });
+
+    socket.on("userJoin", function(){
+      socket.emit("new_count", count);
+    });
+
+    function countUpdate(){
+      io.emit("new_count", count);
+    }
   });
 };
