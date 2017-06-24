@@ -32,12 +32,17 @@
       // triggers connection event in server!
       var socket = io.connect();
       var user, txt;
-      user = prompt("Enter a username");
-      if (user == null || user == ""){
-        user = "Anonymous";
-      }
-      txt = "Current user: " + user;
-      $('#current_user').text(txt);
+      socket.on("get_user_name", function(data){
+        user = prompt("Enter a username");
+        if (user == null || user == ""){
+          user = "Anonymous";
+        }
+        socket.emit("new_user", { user: user });
+        txt = "Current user: " + user;
+        $('#current_user').text(txt);
+        $('#chatInput').focus();
+      });
+
       // submit to the server using emit
       $('#send').on('click', function(e){
         e.preventDefault();
@@ -49,12 +54,18 @@
         });
         // Add new message to chat board
         socket.on("new_message", function (message){
-            $('#messages').append($('<li>').text(message.user + ": " + message.message));
+            $('#messages').append($('<li>').html("[" + message.timestamp + "] <span class='postInfo'>" + message.user + ":</span> " + message.message));
             $('#chatInput').val('');
         });
-        socket.on("new_user", function (chat_history){
+        socket.on("user_joined", function(user){
+            $('#messages').append($('<li>').html("[" + user.timeStamp + "] <span class='new_login'>" + user.user + " has joined the chat session.</span>"));
+        });
+        socket.on("user_disconnected", function(user){
+            $('#messages').append($('<li>').html("[" + user.timeStamp + "] <span class='new_login'>" + user.user + " has left the chat session.</span>"));
+        });
+        socket.on("load_chat_history", function (chat_history){
           chat_history.forEach(function(chat_history){
-              $('#messages').append($('<li>').text(chat_history.user + ": " + chat_history.message));
+              $('#messages').append($('<li>').html("[" + chat_history.timestamp + "] <span class='postInfo'>" + chat_history.user + ":</span> " + chat_history.message));
             $('#chatInput').focus();
           });
         });

@@ -35,3 +35,12 @@ li {
   list-style-type: none;
   line-height: 0.75em;
 }
+
+.postInfo {
+  font-weight: bold;
+  margin-right: 5px;
+}
+
+.new_login {
+  font-style: italic;
+}
