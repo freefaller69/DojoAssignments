@@ -23,7 +23,6 @@ module.exports = function Route(app, server){
     // events for server to listen for
     // log new user into session array and broadcast to group
     socket.on('new_user', function(user){
-      console.log(xTime());
       socket.user = user;
       user.id = socket.id;
       user.timeStamp = xTime();
