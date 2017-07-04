@@ -57,7 +57,7 @@
             <% for (const error of errors) { %>
               <p class="red alert warning"><%= error %></p>
             <% } %>
-          <%} %>
+          <% } else { %>
           <form id="postForm" action="/messages" method="POST">
             <div class="col-md-6">
               <fieldset class="form-group">
@@ -90,11 +90,6 @@
             </div>
             <% } %>
 
-            <% if (typeof errors !== 'undefined') { %>
-              <% for (const error of errors) { %>
-                <p class="red alert warning"><%= error %></p>
-              <% } %>
-            <%} %>
             <form id="commentForm" action="/comments" method="POST" class="col-md-12">
               <div class="col-md-6">
                 <fieldset class="form-group">
@@ -111,6 +106,7 @@
             </form>
 
           </div>
+          <% } %>
           <% } %>
           <!-- ===================== -->
         </div>

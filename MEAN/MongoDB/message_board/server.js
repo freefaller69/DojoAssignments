@@ -1,5 +1,3 @@
-require('dotenv').load();
-
 const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
@@ -100,7 +98,6 @@ app.post('/comments', function(req, res){
       });
     })
     .catch(function(error){
-      console.log(error.errors.name);
       res.render('index', {
         errors: Object.keys(error.errors)
                   .map(errorKey => error.errors[errorKey].message)
