@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <title>Wolves Dashboard</title>
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+
+  <!-- Scripts
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="stylesheet" href="/css/normalize.css">
+  <link rel="stylesheet" href="/css/skeleton.css">
+  <link rel="stylesheet" href="/css/style.css">
+
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="images/favicon.png">
+
+</head>
+<body>
+
+  <!-- Primary Page Layout
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <div class="container">
+    <div class="row">
+      <div class="twelve columns">
+        <h4>Wolves Dashboard</h4>
+      </div>
+    </div>
+    <div class="row">
+      <div class="one-half column">
+        <table>
+          <thead>
+            <th>Name</th>
+            <th>Actions</th>
+          </thead>
+          <tbody>
+            <% for (const wolf of wolves) { %>
+              <tr>
+                <td><a href="/wolves/<%= wolf._id %>"><%= wolf.name %></a></td>
+                <td><a href="#">Do stuff</a></td>
+              </tr>
+            <% } %>
+          </tbody>
+        </table>
+
+      </div>
+      <div class="one-half column">
+        <a href="/wolves/new" class="btn btn-outline-info">Add wolf</a>
+
+      </div>
+    </div>
+  </div>
+
+<!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+</body>
+</html>

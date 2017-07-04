@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <title>Message Board</title>
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+
+  <!-- Scripts
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" href="../css/style.css">
+
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="images/favicon.png">
+
+</head>
+<body>
+
+  <!-- Primary Page Layout
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+
+  <!-- HEADER -->
+  <section id="header">
+    <div class="container">
+      <div class="row">
+
+        <h1>The Dojo Message Board</h1>
+
+      </div>
+    </div>
+  </section>
+  <!-- END HEADER -->
+
+  <!-- WALL -->
+
+  <section id="wall">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <% if (typeof errors !== 'undefined') { %>
+            <% for (const error of errors) { %>
+              <p class="red alert warning"><%= error %></p>
+            <% } %>
+          <%} %>
+          <form id="postForm" action="/messages" method="POST">
+            <div class="col-md-6">
+              <fieldset class="form-group">
+                <input name="name" id="messageNameInput" type="text" class="form-control form-control-sm" placeholder="Name...">
+              </fieldset>
+              <fieldset class="form-group">
+                <textarea name="message" id="messageContentInput" rows="3" class="form-control form-control-sm" placeholder="Enter your message here..."></textarea>
+              </fieldset>
+              <button type="submit" class="btn btn-outline-info">Post Message</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <div class="row">
+        <div id="postsFeed" class="col-md-12">
+          <!-- template code goes here -->
+          <% for(const message of messages) { %>
+          <div class="post col-md-12">
+            <h3 class="postName">Name: <%= message.name %></h3>
+            <h4 class="postMsg">Message: <%= message.message %></h4>
+            <hr align="left">
+          </div>
+          <div class="postComments">
+            <% for(const comment of message.comments) { %>
+            <div class="comment col-md-12">
+              <h5 class="commentName">Name: <%= comment.name %></h5>
+              <p class="commentMsg">Comment: <%= comment.comment %></p>
+              <hr align="left">
+            </div>
+            <% } %>
+
+            <% if (typeof errors !== 'undefined') { %>
+              <% for (const error of errors) { %>
+                <p class="red alert warning"><%= error %></p>
+              <% } %>
+            <%} %>
+            <form id="commentForm" action="/comments" method="POST" class="col-md-12">
+              <div class="col-md-6">
+                <fieldset class="form-group">
+                  <input type="hidden" name="message" value="<%= message._id %>">
+                </fieldset>
+                <fieldset class="form-group">
+                  <input name="name" id="commentNameInput" type="text" class="form-control form-control-sm" placeholder="Name...">
+                </fieldset>
+                <fieldset class="form-group">
+                  <textarea name="comment" id="commentContentInput" rows="1" class="form-control form-control-sm" placeholder="Comment here..."></textarea>
+                </fieldset>
+                <button type="submit" class="btn btn-outline-info">Post Comment</button>
+              </div>
+            </form>
+
+          </div>
+          <% } %>
+          <!-- ===================== -->
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- END WALL -->
+
+
+<!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js" integrity="sha384-THPy051/pYDQGanwU6poAc/hOdQxjnOEXzbT+OuUAFqNqFjL+4IGLBgCJC3ZOShY" crossorigin="anonymous"></script>
+</body>
+</html>

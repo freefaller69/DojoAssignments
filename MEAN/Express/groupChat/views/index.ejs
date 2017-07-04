@@ -57,12 +57,15 @@
             $('#messages').append($('<li>').html("[" + message.timestamp + "] <span class='postInfo'>" + message.user + ":</span> " + message.message));
             $('#chatInput').val('');
         });
+        // New user notification broadcast
         socket.on("user_joined", function(user){
             $('#messages').append($('<li>').html("[" + user.timeStamp + "] <span class='new_login'>" + user.user + " has joined the chat session.</span>"));
         });
+        // User disconnected broadcast
         socket.on("user_disconnected", function(user){
             $('#messages').append($('<li>').html("[" + user.timeStamp + "] <span class='new_login'>" + user.user + " has left the chat session.</span>"));
         });
+        // load existing chat history for new user
         socket.on("load_chat_history", function (chat_history){
           chat_history.forEach(function(chat_history){
               $('#messages').append($('<li>').html("[" + chat_history.timestamp + "] <span class='postInfo'>" + chat_history.user + ":</span> " + chat_history.message));

@@ -1,0 +1,54 @@
+html, body {
+  height: 100%;
+  font-family: "Raleway", sans-serif;
+}
+
+.btn {
+  transition: all 0.3s ease-in-out;
+}
+
+hr {
+  width: 30%;
+  align: left;
+}
+
+/*WALL*/
+
+#wall {
+  padding: 5rem 0;
+}
+
+#wall #postForm .btn {
+  background-color: #1926d1;
+  color: #fff;
+  float: right;
+}
+
+#wall #postForm .btn:hover {
+  background-color: transparent;
+  border: 1px solid #1926d1;
+  color: #1926d1;
+}
+
+/*POSTS FEED*/
+#postsFeed .post {
+  background-color: #f6f6f6;
+}
+
+#postsFeed .postComments {
+  margin: 0 35px;
+}
+
+/*COMMENTS*/
+
+#wall #commentForm .btn {
+  background-color: #19d126;
+  color: #fff;
+  float: right;
+}
+
+#wall #commentForm .btn:hover {
+  background-color: transparent;
+  border: 1px solid #19d126;
+  color: #19d126;
+}

@@ -1,0 +1,52 @@
+body {
+  padding: 2%;
+  font-size: 1.7em;
+}
+
+h1 {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+button {
+  color: #fff;
+  background-color: #085394;
+  border: 2px solid #000;
+  box-shadow: 7px 7px 5px #888888;
+}
+
+li {
+  list-style-type: none;
+  line-height: 0.75em;
+}
+
+.postInfo {
+  font-weight: bold;
+  margin-right: 5px;
+}
+
+a {
+  text-decoration: none;
+  color: #fff;
+}
+
+.poster {
+  margin-left: 30px;
+}
+
+p {
+  margin: 0;
+}
+
+.quote_container {
+  border-bottom: 2px solid #777;
+}
+
+.quote {
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+.poster {
+  font-size: 1em;
+}

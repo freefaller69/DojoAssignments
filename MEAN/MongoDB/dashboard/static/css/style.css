@@ -1,0 +1,16 @@
+html, body {
+  height: 100%;
+  font-family: "Raleway", sans-serif;
+  background-color: #000;
+}
+
+.btn {
+  transition: all 0.3s ease-in-out;
+  color: blue;
+}
+
+/*WALL*/
+
+#wall {
+  padding: 5rem 0;
+}

@@ -24,16 +24,9 @@ module.exports = function Route(app, server) {
   });
 
   app.post('/quotes', function (req, res) {
-    Quote.create(req.body)
-      .then(function(quote) {
-        res.redirect('/all_quotes');
-      })
-      .catch(function (error) {
-        res.redirect('/all_quotes');
-      })
-    // const new_quote = new Quote(req.body);
-    // new_quote.save();
-    // res.redirect('/all_quotes');
+    const new_quote = new Quote(req.body);
+    new_quote.save();
+    res.redirect('/all_quotes');
   });
 
 };

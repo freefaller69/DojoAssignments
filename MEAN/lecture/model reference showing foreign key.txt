@@ -1,0 +1,33 @@
+const authorSchema = new Schema({
+	name: {
+		type: String,
+		required: true,
+		trim: true
+	},
+	age: Number,
+	isAlive: {
+		type: Boolean,
+		default: true
+	},
+	books: [
+		{
+			type: Schema.Types.ObjectId,
+			ref:'Book'
+		}
+		]
+	})
+
+
+const bookSchema = new Schema({
+title: {
+	type: String,
+	required: true,
+	trim: true
+},
+pageCount: Number,
+year: Number,
+author: {
+	type: Schema.Types.ObjectId,
+	ref: 'Author'
+}
+})

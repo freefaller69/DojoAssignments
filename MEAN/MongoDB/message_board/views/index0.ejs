@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <title>Message Board</title>
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+
+  <!-- Scripts
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" href="../css/style.css">
+
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="images/favicon.png">
+
+</head>
+<body>
+
+  <!-- Primary Page Layout
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+
+  <!-- HEADER -->
+  <section id="header">
+    <div class="container">
+      <div class="row">
+
+        <h1>The Dojo Message Board</h1>
+
+      </div>
+    </div>
+  </section>
+  <!-- END HEADER -->
+
+  <!-- WALL -->
+
+  <section id="wall">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <form id="postForm" action="#">
+            <div class="col-md-6">
+              <fieldset class="form-group">
+                <input name="postNameInput" id="postNameInput" type="text" class="form-control form-control-sm" placeholder="Name...">
+              </fieldset>
+              <fieldset class="form-group">
+                <textarea name="postMsgInput" id="postMsgInput" rows="3" class="form-control form-control-sm" placeholder="Enter your message here..."></textarea>
+              </fieldset>
+              <button type="submit" class="btn btn-outline-info">Post Message</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <div class="row">
+        <div id="postsFeed" class="col-md-12">
+          <div class="post">
+            <h3 class="postName">Name: Brendan</h3>
+            <h4 class="postMsg">Message: I are code stoodent!</h4>
+            <hr align="left">
+          </div>
+          <div class="postComments">
+            <div class="comment">
+              <h5 class="commentName">Name: Jimmy</h5>
+              <p class="commentMsg">I artoo!</p>
+              <hr align="left">
+            </div>
+            <div class="comment">
+              <h5 class="commentName">Name: Jay</h5>
+              <p class="commentMsg">You guys crazy!</p>
+              <hr align="left">
+            </div>
+
+            <form id="commentForm" action="#">
+              <div class="col-md-6">
+                <fieldset class="form-group">
+                  <input name="commentNameInput" id="commentNameInput" type="text" class="form-control form-control-sm" placeholder="Name...">
+                </fieldset>
+                <fieldset class="form-group">
+                  <textarea name="commentMsgInput" id="commentMsgInput" rows="1" class="form-control form-control-sm" placeholder="Comment here..."></textarea>
+                </fieldset>
+                <button type="submit" class="btn btn-outline-info">Post Comment</button>
+              </div>
+            </form>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- END WALL -->
+
+
+<!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js" integrity="sha384-THPy051/pYDQGanwU6poAc/hOdQxjnOEXzbT+OuUAFqNqFjL+4IGLBgCJC3ZOShY" crossorigin="anonymous"></script>
+</body>
+</html>

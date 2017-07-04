@@ -29,7 +29,7 @@ module.exports = function Route(app, server){
       session_users.push(user);
       socket.broadcast.emit("user_joined", user);
     });
-    //
+    // user disconnect, broadcast to other users, remove from session_users array
     socket.on('disconnect', function(user){
       user = socket.user;
       user.timeStamp = xTime();
