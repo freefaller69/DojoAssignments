@@ -1,0 +1,10 @@
+div {
+  text-align: center;
+}
+
+.barcode {
+  display: inline-block;
+  border: 1px solid black;
+  width: 70px;
+  height: 70px;
+}
