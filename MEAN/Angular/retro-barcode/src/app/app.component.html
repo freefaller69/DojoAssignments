@@ -6,15 +6,6 @@
         Welcome to {{title}}
       </h1>
     </div>
-    <div class="col-sm-1 barcode" [ngStyle]="{'background-color': getColor()}"></div>
-    <div class="col-sm-1 barcode" [ngStyle]="{'background-color': getColor()}"></div>
-    <div class="col-sm-1 barcode" [ngStyle]="{'background-color': getColor()}"></div>
-    <div class="col-sm-1 barcode" [ngStyle]="{'background-color': getColor()}"></div>
-    <div class="col-sm-1 barcode" [ngStyle]="{'background-color': getColor()}"></div>
-    <div class="col-sm-1 barcode" [ngStyle]="{'background-color': getColor()}"></div>
-    <div class="col-sm-1 barcode" [ngStyle]="{'background-color': getColor()}"></div>
-    <div class="col-sm-1 barcode" [ngStyle]="{'background-color': getColor()}"></div>
-    <div class="col-sm-1 barcode" [ngStyle]="{'background-color': getColor()}"></div>
-    <div class="col-sm-1 barcode" [ngStyle]="{'background-color': getColor()}"></div>
+    <div class="col-sm-1 barcode" *ngFor="let box of boxes" [ngStyle]="{'background-color': getColor()}"></div>
   </div>
 </div>
