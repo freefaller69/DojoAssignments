@@ -1,0 +1,26 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div style="text-align:center">
+  <h1>
+    Welcome to {{title}}
+  </h1>
+</div>
+<div class="container">
+  <div class="row">
+    <div id="timezoneButtons">
+      <button class="btn btn-default" (click)='getTime(pacific)' [ngClass]="{selected: timeZoneSelected === -7}">PDT</button>
+      <button class="btn btn-default" (click)='getTime(mountain)' [ngClass]="{selected: timeZoneSelected === -6}">MDT</button>
+      <button class="btn btn-default" (click)='getTime(central)' [ngClass]="{selected: timeZoneSelected === -5}">CST</button>
+      <button class="btn btn-default" (click)='getTime(eastern)' [ngClass]="{selected: timeZoneSelected === -4}">EST</button>
+      <button class="btn btn-success" (click)='reset()'>Clear</button>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div id="time">
+      <h2>
+        <p *ngIf="timeZoneSelected">Right now: {{ rightNow }}</p>
+      </h2>
+    </div>
+  </div>
+</div>

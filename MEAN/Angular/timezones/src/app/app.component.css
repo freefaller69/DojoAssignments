@@ -1,0 +1,12 @@
+div {
+  text-align: center;
+}
+
+button {
+  padding: 15px;
+  margin: 25px;
+}
+
+.selected {
+  background-color: #fffd19;
+}

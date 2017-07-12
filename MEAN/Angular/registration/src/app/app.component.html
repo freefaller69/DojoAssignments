@@ -1,0 +1,104 @@
+<div style="text-align:center">
+  <h1>
+    {{title}}
+  </h1>
+</div>
+<div class="container">
+  <div class="row">
+    <div id="mainForm" class="col-md-6">
+      <div id="success" *ngIf="show">
+        <p>Thank you for registering with us APPLICANT.  We just sent you a confirmation email at EMAIL, and we will send all mail to ADDRESS.</p>
+        <p>Have a wonderful day.</p>
+      </div>
+      <fieldset>
+        <legend>Fields marked with * are required</legend>
+
+        <!-- FORM -->
+        <form name="applicantForm" (ngSubmit)="onSubmit($event); applicantForm.reset()" #applicantForm="ngForm" novalidate>
+          <!-- FIRST NAME -->
+          <div class="form-group">
+            <label for="inputFirstName">*First Name</label>
+            <input type="text" class="form-control" id="firstName" name="firstName" [(ngModel)]="applicant.firstName" #firstName='ngModel' placeholder="First Name" required>
+            <div *ngIf="(firstName.dirty || firstName.touched) && firstName.errors">
+              <div *ngIf="firstName.errors.required" class='alert alert-danger'>First name is required.</div>
+            </div>
+          </div>
+          <!-- LAST NAME -->
+          <div class="form-group">
+            <label for="inputLastName">*Last Name</label>
+            <input type="text" class="form-control" id="inputLastName" name="lastName" [(ngModel)]="applicant.lastName" #lastName='ngModel' placeholder="Last Name" required>
+            <div *ngIf="(lastName.dirty || lastName.touched) && lastName.errors">
+              <div *ngIf="lastName.errors.required" class='alert alert-danger'>Last name is required.</div>
+            </div>
+          </div>
+          <!-- EMAIL -->
+          <div class="form-group">
+            <label for="inputEmail1">*Email address</label>
+            <input type="email" class="form-control" id="inputEmail1" name="email" [(ngModel)]="applicant.email" #email='ngModel' placeholder="Email" required pattern="^[a-zA-Z0-9\.\+_-]+@[a-zA-Z0-9\._-]+\.[a-zA-Z]*$">
+            <div *ngIf="(email.dirty || email.touched) && email.errors">
+              <div *ngIf="email.errors.required" class='alert alert-danger'>Email address is required.</div>
+              <div *ngIf="email.errors.pattern" class='alert alert-danger'>Please enter a valid email format.</div>
+            </div>
+          </div>
+          <!-- PASSWORD -->
+          <div class="form-group">
+            <label for="inputPassword1">*Password <small>(minimum length 16 characters)</small></label>
+            <input type="password" class="form-control" id="inputPassword1" name="password" [(ngModel)]="applicant.password" #password='ngModel' placeholder="Password" required minlength="16">
+            <div *ngIf="password.touched && password.errors">
+              <div *ngIf="password.errors.required" class='alert alert-danger'>Password is required.</div>
+              <div [hidden]="!password.errors.minlength" class='alert alert-danger'>Password must be at least 16 characters in length.</div>
+            </div>
+          </div>
+          <!-- PASSWORD CONFIRMATION -->
+          <div class="form-group">
+            <label for="inputPasswordConfirmation">*Password Confirmation</label>
+            <input type="password" class="form-control" id="inputPasswordConfirmation" name="confirmPassword" placeholder="Confirm Password">
+          </div>
+          <!-- STREET -->
+          <div class="form-group">
+            <label for="inputStreet">*Street Address</label>
+            <input type="text" class="form-control" id="inputStreet" name="street" [(ngModel)]="applicant.street" #street='ngModel' placeholder="Street Address" required>
+            <div *ngIf="(street.dirty || street.touched) && street.errors">
+              <div *ngIf="street.errors.required" class='alert alert-danger'>Street is required.</div>
+            </div>
+          </div>
+          <!-- APT -->
+          <div class="form-group">
+            <label for="inputApt">Unit/Apt #</label>
+            <input type="text" class="form-control" id="inputApt" name="apt" [(ngModel)]="applicant.apt" placeholder="Unit/Apt #">
+          </div>
+          <!-- CITY -->
+          <div class="form-group">
+            <label for="inputCity">*City</label>
+            <input type="text" class="form-control" id="inputCity" name="city" [(ngModel)]="applicant.city" #city='ngModel' placeholder="City" required>
+            <div *ngIf="(city.dirty || city.touched) && city.errors">
+              <div *ngIf="city.errors.required" class='alert alert-danger'>City name is required.</div>
+            </div>
+          </div>
+          <!-- STATE -->
+          <div class="form-group">
+            <label for="inputState">*State</label>
+            <input type="text" class="form-control" id="inputState" name="state" [(ngModel)]="applicant.state" #state='ngModel' placeholder="State" required>
+            <div *ngIf="(state.dirty || state.touched) && state.errors">
+              <div *ngIf="state.errors.required" class='alert alert-danger'>State is required.</div>
+            </div>
+          </div>
+          <!-- FEELING LUCKY -->
+          <div class="form-group">
+            <label for="inputState">*I'm feeling lucky</label>
+            <label class="radio-inline">
+              <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> Yes
+            </label>
+            <label class="radio-inline">
+              <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> No
+            </label>
+            <label class="radio-inline">
+              <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2" checked> SQUIRREL!!!
+            </label>
+          </div>
+          <button type="submit" class="btn btn-primary btn-block" [disabled]="!applicantForm.form.valid">Submit</button>
+        </form>
+      </fieldset>
+    </div>
+  </div>
+    </div>
