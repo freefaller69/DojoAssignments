@@ -11,8 +11,6 @@ export class SwitchComponent implements OnInit {
   flipSwitch: boolean;
 
   constructor(){
-    this.activeSwitch = Math.random() > 0.5 ? 'On' : 'Off';
-    this.activeSwitch === 'On' ? this.flipSwitch = true : this.flipSwitch = false;
   }
 
   getSwitchStatus(){
@@ -25,6 +23,8 @@ export class SwitchComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.activeSwitch = Math.random() > 0.5 ? 'On' : 'Off';
+    this.activeSwitch === 'On' ? this.flipSwitch = true : this.flipSwitch = false;
   }
 
 }

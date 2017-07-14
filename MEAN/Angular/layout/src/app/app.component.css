@@ -1,0 +1,24 @@
+.col-md-12, .col-md-9, .col-md-3 {
+  border: 1px solid black;
+  background-color: #9ec7f5;
+  padding: 25px;
+}
+
+.row {
+  margin: 25px 0;
+}
+
+.row:last-of-type {
+  height: 300px;
+}
+
+.col-md-3 {
+  width: 20%;
+  height: 100%;
+}
+
+.col-md-9 {
+  width: 75%;
+  float: right;
+  height: 100%;
+}

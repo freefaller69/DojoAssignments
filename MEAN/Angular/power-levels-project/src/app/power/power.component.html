@@ -1,0 +1,33 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <label class="form-inline">Initial Power Level:</label>
+      <input type="number" name="powerInput" class="form-inline input-lg" #powerInput min="1" max="100" placeholder="between 1 and 100">
+      <div *ngIf='(powerInput.touched || powerInput.dirty) && powerInput.errors'>
+        <div *ngIf='powerInput.errors.min' class='alert alert-danger'>Initial power must be greater than zero.</div>
+        <div *ngIf='powerInput.errors.max' class='alert alert-danger'>Initial power can be no greater than 100.</div>
+      </div>
+      <button class="btn btn-primary btn-lg" (click)="calculatePowers(powerInput)">Calculate Powers</button>
+    </div>
+  </div>
+  <div class="component-row clearfix">
+    <div class="component">
+      <app-human [myPower]='power'></app-human>
+    </div>
+    <div class="component">
+      <app-saiyan [myPower]='power'></app-saiyan>
+    </div>
+    <div class="component">
+      <app-super-saiyan [myPower]='power'></app-super-saiyan>
+    </div>
+    <div class="component">
+      <app-super-saiyan-two [myPower]='power'></app-super-saiyan-two>
+    </div>
+    <div class="component">
+      <app-super-saiyan-three [myPower]='power'></app-super-saiyan-three>
+    </div>
+    <div class="component">
+      <app-super-saiyan-four [myPower]='power'></app-super-saiyan-four>
+    </div>
+  </div>
+</div>

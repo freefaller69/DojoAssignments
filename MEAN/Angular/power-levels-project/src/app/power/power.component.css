@@ -1,0 +1,41 @@
+.component {
+  width: 31.33333333%;
+  height: 175px;
+  float: left;
+  margin: 0 3% 40px 0;
+  padding: 15px;
+  border: 2px solid #000;
+  background-color: #fff8e2;
+  border-radius: 15px;
+  font-family: 'Permanent Marker', cursive;
+  font-size: 1.25em
+}
+
+.component:nth-child(3n) {
+  margin-right: 0;
+}
+
+label {
+  font-size: 1.75em;
+  margin-right: 25px;
+}
+
+input {
+  margin-right: 25px;
+  width: 220px;
+}
+
+@media screen and ( max-width : 768 px ) {
+  .component {
+    width: 48%;
+    margin-right: 2%;
+    min-height: 200px;
+  }
+}
+
+@media screen and ( max-width : 568 px ) {
+  .component {
+    width: 100%;
+    margin-right: 0;
+  }
+}
