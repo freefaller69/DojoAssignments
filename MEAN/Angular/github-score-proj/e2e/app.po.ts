@@ -1,6 +1,6 @@
 import { browser, by, element } from 'protractor';
 
-export class QuoteRanksProjectPage {
+export class GithubScorePage {
   navigateTo() {
     return browser.get('/');
   }

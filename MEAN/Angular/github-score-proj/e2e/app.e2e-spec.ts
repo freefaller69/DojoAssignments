@@ -1,10 +1,10 @@
-import { QuoteRanksProjectPage } from './app.po';
+import { GithubScorePage } from './app.po';
 
-describe('quote-ranks-project App', () => {
-  let page: QuoteRanksProjectPage;
+describe('github-score App', () => {
+  let page: GithubScorePage;
 
   beforeEach(() => {
-    page = new QuoteRanksProjectPage();
+    page = new GithubScorePage();
   });
 
   it('should display welcome message', () => {
