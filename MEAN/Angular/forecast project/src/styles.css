@@ -1,0 +1,26 @@
+/* You can add global styles to this file, and also import other style files */
+#city {
+  width: 80%
+}
+
+#city p {
+  text-align: left;
+}
+
+.nav li a:hover, .nav li a:focus {
+  background-color: #251ea7;
+  color: white;
+}
+
+header {
+  margin-bottom: 25px;;
+}
+
+img {
+  height: 250px;
+  width: auto;
+}
+
+p {
+  font-size: 1.75em;
+}

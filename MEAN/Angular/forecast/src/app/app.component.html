@@ -1,0 +1,29 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h1>Dojo Weather Forecast</h1>
+    </div>
+  </div>
+  <div class="row nav-row">    <!-- nav section -->
+    <div class="col-md-12">
+      <nav class="navbar navbar-navbar">
+        <div class="container-fluid">
+          <ul class="nav navbar-nav">
+            <li><a routerLink="/seattle" routerLinkActive='active'>Seattle, WA</a></li>
+            <li><a routerLink="/sanjose" routerLinkActive='active'>San Jose, CA</a></li>
+            <li><a routerLink="/burbank" routerLinkActive='active'>Burbank, CA</a></li>
+            <li><a routerLink="/dallas" routerLinkActive='active'>Dallas, TX</a></li>
+            <li><a routerLink="/dc" routerLinkActive='active'>Washington D.C.</a></li>
+            <li><a routerLink="/chicago" routerLinkActive='active'>Chicago, IL</a></li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+  </div>  <!-- nav section -->
+  <div class="row">    <!-- detail section -->
+    <div class="col-md-12">
+      <router-outlet></router-outlet>
+    </div>
+  </div>  <!-- detail section -->
+
+</div>

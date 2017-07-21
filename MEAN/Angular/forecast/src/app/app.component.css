@@ -1,0 +1,17 @@
+.container {
+  text-align: center;
+}
+
+nav {
+  display: table;
+  margin: 0 auto;
+  text-align: center;
+}
+
+li + li {
+  border-left: 2px solid #ccc;
+}
+
+.nav-row {
+  margin: 25px 0;
+}
