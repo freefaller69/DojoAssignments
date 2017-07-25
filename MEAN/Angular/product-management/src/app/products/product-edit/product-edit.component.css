@@ -1,0 +1,11 @@
+.btnContainer {
+  margin-top: 20px;
+}
+
+.imgDetail {
+  border: 1px solid #000;
+  border-radius: 5px;
+  width: 80%;
+  height: auto;
+  margin-left: 10%;
+}
